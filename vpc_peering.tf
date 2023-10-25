@@ -1,6 +1,6 @@
 resource "aws_vpc_peering_connection" "vpc_peering" {
-  peer_vpc_id = module.rds_vpc.vpc_id
-  vpc_id      = module.eks_vpc.vpc_id
+  peer_vpc_id = module.rds_vpc.0.vpc_id
+  vpc_id      = module.eks_vpc.0.vpc_id
   auto_accept = true
   tags = {
     Side = "VPC Peering"
@@ -9,8 +9,8 @@ resource "aws_vpc_peering_connection" "vpc_peering" {
 }
 
 resource "aws_route" "peering_routes" {
-  route_table_id            = module.eks_vpc.route_table_id
-  destination_cidr_block    = module.rds_vpc.vpc_cidr
+  route_table_id            = module.eks_vpc.0.route_table_id
+  destination_cidr_block    = module.rds_vpc.0.vpc_cidr
   vpc_peering_connection_id = aws_vpc_peering_connection.vpc_peering.id
   depends_on                = [aws_vpc_peering_connection.vpc_peering]
 }

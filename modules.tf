@@ -35,7 +35,7 @@ module "rds" {
   rds_username         = var.rds_username
   rds_password         = var.rds_password
   db_subnet_group_name = var.db_subnet_group_name
-  subnet_ids           = module.rds_vpc.subnet_id
+  subnet_ids           = "${module.rds_vpc.0.subnet_id}"
 
 }
 
@@ -45,10 +45,10 @@ module "eks" {
   depends_on          = [module.eks_vpc]
   eks_iam_role_name   = var.eks_iam_role_name
   eks_cluster_name    = var.eks_cluster_name
-  subnet_id           = module.eks_vpc.subnet_id
+  subnet_id           = module.eks_vpc.0.subnet_id
   node_group_iam_name = var.node_group_iam_name
   node_group_name     = var.node_group_name
-  subnet_ids          = module.eks_vpc.subnet_id
+  subnet_ids          = "${toset(module.eks_vpc.0.subnet_ids[*])}"
 
 
 }
@@ -62,11 +62,11 @@ module "airflow_helm_chart" {
   helm_repo         = var.helm_repo
   helm_chart        = var.helm_chart
   chart_params      = var.chart_params
-  db_host           = module.rds.db_address
-  db_port           = module.rds.db_port
-  db_name           = module.rds.db_name
-  db_user           = module.rds.db_user
-  db_password       = module.rds.db_pass
+  db_host           = module.rds.0.db_address
+  db_port           = module.rds.0.db_port
+  db_name           = module.rds.0.db_name
+  db_user           = module.rds.0.db_user
+  db_password       = module.rds.0.db_pass
 
 
 }
