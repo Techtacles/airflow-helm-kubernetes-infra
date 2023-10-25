@@ -35,7 +35,7 @@ module "rds" {
   rds_username         = var.rds_username
   rds_password         = var.rds_password
   db_subnet_group_name = var.db_subnet_group_name
-  subnet_ids           = "${module.rds_vpc.0.subnet_id}"
+  subnet_ids           = module.rds_vpc.0.subnet_id
 
 }
 
@@ -48,7 +48,7 @@ module "eks" {
   subnet_id           = module.eks_vpc.0.subnet_id
   node_group_iam_name = var.node_group_iam_name
   node_group_name     = var.node_group_name
-  subnet_ids          = "${toset(module.eks_vpc.0.subnet_ids[*])}"
+  subnet_ids          = toset(module.eks_vpc.0.subnet_ids[*])
 
 
 }
