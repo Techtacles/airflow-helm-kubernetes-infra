@@ -1,0 +1,4 @@
+*.tfvars
+.DS_Store
+*.tfstate
+*.lock.hcl
