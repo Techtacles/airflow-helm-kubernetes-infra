@@ -13,10 +13,7 @@ variable "tag" {
   type = string
 
 }
-variable "subnet_availability_zones" {
-    type = list(string)
-  
-}
+
 variable "security_group_name" {
     type = string
   
