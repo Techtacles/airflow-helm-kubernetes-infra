@@ -1,8 +1,8 @@
 variable "enable_workflow" {
-    type = bool
-    default = true
-    description = "This is a toggle to enable or disable the whole workflow"
-  
+  type        = bool
+  default     = true
+  description = "This is a toggle to enable or disable the whole workflow"
+
 }
 #EKS VPC MODULE
 variable "vpc_cidr_block" {
@@ -15,8 +15,8 @@ variable "tag" {
 }
 
 variable "security_group_name" {
-    type = string
-  
+  type = string
+
 }
 variable "ingresses" {
   type = list(object(
@@ -42,7 +42,7 @@ variable "egresses" {
 }
 variable "subnet_tag" {
   type = string
-  
+
 }
 
 #RDS VPC MODULE
@@ -55,12 +55,12 @@ variable "rds_tag" {
 
 }
 variable "subnet_availability_zones" {
-    type = list(string)
-  
+  type = list(string)
+
 }
 variable "rds_security_group_name" {
-    type = string
-  
+  type = string
+
 }
 variable "rds_ingresses" {
   type = list(object(
@@ -86,7 +86,7 @@ variable "rds_egresses" {
 }
 variable "rds_subnet_tag" {
   type = string
-  
+
 }
 #RDS DB
 variable "allocated_storage" {
@@ -122,20 +122,20 @@ variable "db_subnet_group_name" {
 
 #EKS Cluster
 variable "eks_iam_role_name" {
-    type = string
-  
+  type = string
+
 }
 variable "eks_cluster_name" {
-    type = string
-  
+  type = string
+
 }
 variable "node_group_iam_name" {
-    type = string
-  
+  type = string
+
 }
 variable "node_group_name" {
-    type = string
-  
+  type = string
+
 }
 
 #HELM
@@ -143,24 +143,24 @@ variable "node_group_name" {
 
 
 variable "namespace_name" {
-    type = string
-  
+  type = string
+
 }
 variable "helm_release_name" {
-    type = string
-  
+  type = string
+
 }
 variable "helm_repo" {
-    type = string
-  
+  type = string
+
 }
-variable "helm_chart" { 
-    type = string
+variable "helm_chart" {
+  type = string
 }
 variable "chart_params" {
-    type = list(object({
-      name = string
-      value = string
-    }))
-  
+  type = list(object({
+    name  = string
+    value = string
+  }))
+
 }
