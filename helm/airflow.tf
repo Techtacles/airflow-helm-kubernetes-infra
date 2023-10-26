@@ -2,7 +2,7 @@ resource "helm_release" "airflow_chart" {
   name             = var.helm_release_name
   namespace        = kubernetes_namespace_v1.namespace.metadata[0].name
   create_namespace = true
-  timeout          = 1200
+  timeout          = 1500
   force_update     = true
 
   repository = var.helm_repo

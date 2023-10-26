@@ -1,0 +1,16 @@
+externalDatabase:
+  type: postgres
+  host: ${db_host}
+  port: ${db_port}
+  database: ${db_schema}
+  user: ${db_user}
+  password: ${db_password}
+
+airflow: 
+  users:
+    - username: ${airflow_username}
+      password: ${airflow_password}
+      role: ${airflow_role}
+      email: ${airflow_email}
+      firstName: ${airflow_firstname}
+      lastName: ${airflow_lastname}
