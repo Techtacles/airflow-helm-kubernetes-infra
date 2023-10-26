@@ -14,6 +14,6 @@ resource "aws_route_table" "route_table" {
 
 resource "aws_route_table_association" "route_subnet_association" {
   for_each       = toset(aws_subnet.subnet[*].id)
-  subnet_id      = each.value.id
+  subnet_id      = each.value
   route_table_id = aws_route_table.route_table.id
 }
