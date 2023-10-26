@@ -55,12 +55,11 @@ jobs:
     - name: Terraform State List
       run: terraform state list
     
-    # - name: Terraform State Rm helm
-    #   run: |
-    #     terraform state rm 'module.airflow_helm_chart[0].kubernetes_namespace_v1.namespace'
-    #     if [ $? -ne 0 ]; then
-    #       echo "No module yet"
-    #     fi
+    - name: Terraform State Rm helm
+      run: |
+        terraform state rm 'module.airflow_helm_chart[0].kubernetes_namespace_v1.namespace'
+        terraform state rm 'module.airflow_helm_chart[0].helm_release.airflow_chart'
+      continue-on-error: true
 
       
     # Generates an execution plan for Terraform
