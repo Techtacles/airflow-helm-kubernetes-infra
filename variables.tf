@@ -1,6 +1,6 @@
 variable "enable_workflow" {
   type        = bool
-  default     = false
+  default     = true
   description = "This is a toggle to enable or disable the whole workflow"
 
 }
