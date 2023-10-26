@@ -3,3 +3,4 @@
 *.tfstate
 *.lock.hcl
 *.terraform
+config.yaml
