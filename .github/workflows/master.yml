@@ -56,7 +56,7 @@ jobs:
       run: terraform state list
     
     - name: Terraform State Rm helm
-      run: terraform state rm  module.airflow_helm_chart[0***.kubernetes_namespace_v1.namespace  module.airflow_helm_chart[0***.helm_release.airflow_chart
+      run: terraform state rm  'module.airflow_helm_chart[0***.kubernetes_namespace_v1.namespace'
       
     # Generates an execution plan for Terraform
     - name: Terraform Plan
