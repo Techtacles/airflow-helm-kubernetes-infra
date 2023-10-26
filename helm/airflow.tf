@@ -1,6 +1,6 @@
 resource "helm_release" "airflow_chart" {
   name      = var.helm_release_name
-  namespace = kubernetes_namespace.namespace.metadata[0].name
+  namespace = kubernetes_namespace_v1.namespace.metadata[0].name
 
   repository = var.helm_repo
   chart      = var.helm_chart
