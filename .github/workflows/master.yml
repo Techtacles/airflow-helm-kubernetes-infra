@@ -53,12 +53,10 @@ jobs:
       run: terraform fmt -check
 
     
-    # Generates an execution plan for Terraform
-    - name: Terraform Plan
-      run: terraform plan -lock=false -var-file="terraform.tfvars"
+
 
       # On push to "master", build or change infrastructure according to Terraform configuration files
       # Note: It is recommended to set up a required "strict" status check in your repository for "Terraform Cloud". See the documentation on "strict" required status checks for more information: https://help.github.com/en/github/administering-a-repository/types-of-required-status-checks
-    - name: Terraform Apply
-      run: terraform apply -lock=false -var-file="terraform.tfvars" -auto-approve 
+    - name: Terraform destroy
+      run: terraform destroy -lock=false -var-file="terraform.tfvars" -auto-approve 
 
