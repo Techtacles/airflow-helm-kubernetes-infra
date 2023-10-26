@@ -48,7 +48,7 @@ module "eks" {
   subnet_id_list      = module.eks_vpc.0.subnet_ids[*]
   node_group_iam_name = var.node_group_iam_name
   node_group_name     = var.node_group_name
-  subnet_ids          = toset(module.eks_vpc.0.subnet_ids[*])
+  eks_vpc_id          = module.eks_vpc.vpc_id
 
 
 }

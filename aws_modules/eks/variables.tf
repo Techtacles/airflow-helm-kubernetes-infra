@@ -18,6 +18,6 @@ variable "node_group_name" {
   type = string
 
 }
-variable "subnet_ids" {
-    type = set(string)
+variable "eks_vpc_id" {
+  type = string
 }

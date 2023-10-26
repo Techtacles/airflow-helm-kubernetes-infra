@@ -1,9 +1,16 @@
+data "aws_subnets" "get_subnets" {
+  filter {
+    name   = "vpc-id"
+    values = [var.eks_vpc_id]
+  }
+
+}
 
 resource "aws_eks_node_group" "node_group" {
   cluster_name    = aws_eks_cluster.eks_cluster.name
   node_group_name = var.node_group_name
   node_role_arn   = aws_iam_role.eks_nodegroup_iam.arn
-  subnet_ids      = var.subnet_ids
+  subnet_ids      = toset(data.aws_subnets.get_subnets.ids)
 
   scaling_config {
     desired_size = 1
