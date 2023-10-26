@@ -3,7 +3,7 @@ resource "aws_route_table" "route_table" {
 
   route {
     cidr_block = "0.0.0.0/0"
-    gateway_id = aws_nat_gateway.natgw[*].id
+    gateway_id = [for i in aws_nat_gateway.natgw : i.id][0]
   }
 
 
