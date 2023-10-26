@@ -1,10 +1,10 @@
 resource "helm_release" "airflow_chart" {
-  name      = var.helm_release_name
-  namespace = kubernetes_namespace_v1.namespace.metadata[0].name
+  name             = var.helm_release_name
+  namespace        = kubernetes_namespace_v1.namespace.metadata[0].name
+  create_namespace = true
 
   repository = var.helm_repo
   chart      = var.helm_chart
-  version    = "8.8.0"
 
 
   dynamic "set" {
