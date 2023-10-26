@@ -51,6 +51,9 @@ jobs:
     # Checks that all Terraform configuration files adhere to a canonical format
     - name: Terraform Format
       run: terraform fmt -check
+
+    - name: Terraform State List
+      run: terraform state list
     
     - name: Terraform State Rm helm
       run: terraform state rm  module.airflow_helm_chart.kubernetes_namespace_v1.namespace
