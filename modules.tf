@@ -35,21 +35,20 @@ module "rds" {
   rds_username         = var.rds_username
   rds_password         = var.rds_password
   db_subnet_group_name = var.db_subnet_group_name
-  subnet_ids           = module.rds_vpc.0.subnet_ids[*]
+  subnet_ids           = module.rds_vpc.0.private_subnet_ids[*]
 
 }
 
 module "eks" {
-  count               = var.enable_workflow == true ? 1 : 0
-  source              = "./aws_modules/eks"
-  depends_on          = [module.eks_vpc]
-  eks_iam_role_name   = var.eks_iam_role_name
-  eks_cluster_name    = var.eks_cluster_name
-  subnet_id_list      = module.eks_vpc.0.subnet_ids[*]
-  node_group_iam_name = var.node_group_iam_name
-  node_group_name     = var.node_group_name
-  eks_vpc_id          = module.eks_vpc.0.vpc_id
-
+  count                 = var.enable_workflow == true ? 1 : 0
+  source                = "./aws_modules/eks"
+  depends_on            = [module.eks_vpc]
+  eks_iam_role_name     = var.eks_iam_role_name
+  eks_cluster_name      = var.eks_cluster_name
+  subnet_id_list        = flatten([module.eks_vpc.0.public_subnet_ids[*], module.eks_vpc.0.private_subnet_ids[*]])
+  node_group_iam_name   = var.node_group_iam_name
+  node_group_name       = var.node_group_name
+  node_group_subnet_ids = flatten(module.eks_vpc.0.private_subnet_ids[*])
 
 }
 

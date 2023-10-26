@@ -18,6 +18,7 @@ variable "node_group_name" {
   type = string
 
 }
-variable "eks_vpc_id" {
-  type = string
+
+variable "node_group_subnet_ids" {
+  type = list(string)
 }

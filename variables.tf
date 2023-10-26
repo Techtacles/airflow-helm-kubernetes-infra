@@ -4,6 +4,7 @@ variable "enable_workflow" {
   description = "This is a toggle to enable or disable the whole workflow"
 
 }
+
 #EKS VPC MODULE
 variable "vpc_cidr_block" {
   type = string

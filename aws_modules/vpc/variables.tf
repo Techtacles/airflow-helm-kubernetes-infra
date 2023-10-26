@@ -7,12 +7,12 @@ variable "tag" {
 
 }
 variable "subnet_availability_zones" {
-    type = list(string)
-  
+  type = list(string)
+
 }
 variable "security_group_name" {
-    type = string
-  
+  type = string
+
 }
 variable "ingresses" {
   type = list(object(
@@ -38,5 +38,6 @@ variable "egresses" {
 }
 variable "subnet_tag" {
   type = string
-  
+
 }
+
