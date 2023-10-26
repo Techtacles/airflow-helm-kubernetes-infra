@@ -4,6 +4,7 @@ resource "helm_release" "airflow_chart" {
 
   repository = var.helm_repo
   chart      = var.helm_chart
+  version    = "8.8.0"
 
 
   dynamic "set" {
