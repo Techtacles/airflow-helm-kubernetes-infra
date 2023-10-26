@@ -12,6 +12,7 @@ resource "helm_release" "airflow_chart" {
     content {
       name  = set.value.name
       value = set.value.value
+      type  = set.value.type
     }
 
   }
