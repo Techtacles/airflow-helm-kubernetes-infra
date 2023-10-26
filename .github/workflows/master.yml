@@ -59,7 +59,7 @@ jobs:
       run: |
         terraform state rm 'module.airflow_helm_chart[0].kubernetes_namespace_v1.namespace'
         terraform state rm 'module.airflow_helm_chart[0].helm_release.airflow_chart'
-      continue-on-error: true
+      if: ${{ always() }}
 
       
     # Generates an execution plan for Terraform
