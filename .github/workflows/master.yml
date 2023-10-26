@@ -57,7 +57,11 @@ jobs:
     
     - name: Terraform State Rm helm
       run: |
-        terraform state rm  'module.airflow_helm_chart[0].kubernetes_namespace_v1.namespace' || echo 'Nothing to return --> Going to next stage'
+        if terraform state rm 'module.airflow_helm_chart[0].kubernetes_namespace_v1.namespace'; then
+          echo "Procced to the next stage ..."
+        else
+          echo "Terraform state rm command failed because module does not exist"
+        fi
 
       
     # Generates an execution plan for Terraform
