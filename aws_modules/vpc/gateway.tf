@@ -21,6 +21,7 @@ resource "aws_eip" "elastic_ip" {
 #Modify nat gateway
 resource "aws_nat_gateway" "natgw" {
   count             = length(var.subnet_availability_zones)
+  allocation_id     = aws_eip.elastic_ip[count.index].id
   subnet_id         = aws_subnet.public_subnet[count.index].id
   connectivity_type = "public"
   tags = {
