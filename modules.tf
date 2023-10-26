@@ -45,7 +45,7 @@ module "eks" {
   depends_on            = [module.eks_vpc]
   eks_iam_role_name     = var.eks_iam_role_name
   eks_cluster_name      = var.eks_cluster_name
-  subnet_id_list        = flatten([module.eks_vpc.0.public_subnet_ids[*], module.eks_vpc.0.private_subnet_ids[*]])
+  subnet_id_list        = flatten([module.eks_vpc.0.public_subnet_ids[*]])
   node_group_iam_name   = var.node_group_iam_name
   node_group_name       = var.node_group_name
   node_group_subnet_ids = flatten(module.eks_vpc.0.private_subnet_ids[*])
