@@ -52,7 +52,7 @@ module "eks" {
 
 }
 
-module "airflow_helm_chart" {
+/* module "airflow_helm_chart" {
   count             = var.enable_workflow == true ? 1 : 0
   source            = "./helm"
   depends_on        = [module.eks]
@@ -68,4 +68,4 @@ module "airflow_helm_chart" {
   db_password       = module.rds.0.db_pass
 
 
-}
+} */
