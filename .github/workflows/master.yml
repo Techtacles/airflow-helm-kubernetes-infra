@@ -52,14 +52,18 @@ jobs:
     - name: Terraform Format
       run: terraform fmt -check
 
-    - name: Terraform State Rm eks module 
-      run: |
-        terraform state rm 'module.airflow_helm_chart[0]'
-      continue-on-error: true
+    # - name: Terraform State Rm eks module 
+    #   run: |
+    #     terraform state rm 'module.airflow_chart[0]'
+    #   continue-on-error: true
 
+      
+    # Generates an execution plan for Terraform
+    - name: Terraform Plan
+      run: terraform plan -lock=false -var-file="terraform.tfvars" 
 
       # On push to "master", build or change infrastructure according to Terraform configuration files
       # Note: It is recommended to set up a required "strict" status check in your repository for "Terraform Cloud". See the documentation on "strict" required status checks for more information: https://help.github.com/en/github/administering-a-repository/types-of-required-status-checks
       # -replace=module.eks.aws_eks_node_group.node_group -replace=module.eks.aws_eks_cluster.eks_cluster   
-    - name: Terraform des
-      run: terraform destroy -lock=false -var-file="terraform.tfvars" --auto-approve 
+    - name: Terraform Apply
+      run: terraform apply -lock=false -var-file="terraform.tfvars" --auto-approve 
