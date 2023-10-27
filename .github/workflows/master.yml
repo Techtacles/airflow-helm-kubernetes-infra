@@ -33,8 +33,6 @@ jobs:
       run: |
         echo "$TERRAFORM_VARIABLES" >> terraform.tfvars
         echo "$KUBECONFIG" >> config.yaml
-        export KUBECONFIG=${{ github.workspace }}/config.yaml
-        echo KUBECONFIG
       shell: bash
       env:
         TERRAFORM_VARIABLES: ${{ secrets.TERRAFORM_VARIABLES }}
