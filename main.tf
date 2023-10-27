@@ -65,7 +65,7 @@ module "airflow_helm_chart" {
   db_user            = module.rds.0.db_user
   db_password        = module.rds.0.db_pass
   service_acc_name   = var.service_acc_name
-  eks_oidc_arn       = module.eks.eks_oicd_arn
+  eks_oidc_arn       = module.eks.0.eks_oicd_arn
   secret_name        = var.secret_name
   pvc_name           = var.pvc_name
   storage_class_name = var.storage_class_name
