@@ -52,16 +52,6 @@ module "eks" {
 
 }
 
-resource "null_resource" "create_kube_config" {
-  triggers = {
-    always = timestamp()
-  }
-  depends_on = [module.eks]
-  provisioner "local-exec" {
-    command = "aws eks update-kubeconfig --region us-east-1 --name ${var.eks_cluster_name}"
-  }
-}
-
 module "airflow_helm_chart" {
   count              = var.enable_workflow == true ? 1 : 0
   source             = "./helm"
