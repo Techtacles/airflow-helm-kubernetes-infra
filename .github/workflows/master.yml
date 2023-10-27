@@ -57,13 +57,8 @@ jobs:
     
     - name: Terraform State Rm helm
       run: |
-        terraform state rm 'module.airflow_helm_chart[0].kubernetes_persistent_volume_claim.example'
-        terraform state rm 'module.airflow_helm_chart[0].kubernetes_storage_class_v1.storage_class'
-        terraform state rm 'module.airflow_helm_chart[0].kubernetes_service_account_v1.service_acc'
-        terraform state rm 'module.airflow_helm_chart[0].kubernetes_service_v1.svc'
-        terraform state rm 'module.airflow_helm_chart[0].kubernetes_namespace_v1.namespace'
-        terraform state rm 'module.airflow_helm_chart[0].helm_release.airflow_chart'
-        terraform state rm 'module.airflow_helm_chart[0].kubernetes_secret_v1.secret'
+        terraform state rm $(terraform state list | grep module.airflow_helm_chart[0])
+
       continue-on-error: true
 
       
