@@ -18,7 +18,7 @@ data "aws_iam_policy_document" "oidc_assume_role_policy" {
     condition {
       test     = "StringEquals"
       variable = "${replace(aws_iam_openid_connect_provider.oidc_provider.url, "https://", "")}:sub"
-      values   = ["system:serviceaccount:${var.namespace_name}:${var.service_acc_name}"]
+      values   = ["system:serviceaccount:kube-system:aws-node"]
     }
 
     principals {
