@@ -22,3 +22,19 @@ variable "node_group_name" {
 variable "node_group_subnet_ids" {
   type = list(string)
 }
+
+variable "oidc_iam_role_name" {
+  type = string
+
+}
+variable "namespace_name" {
+  type = string
+}
+variable "service_acc_name" {
+  type = string
+
+}
+variable "oidc_policy_name" {
+  type = string
+
+}

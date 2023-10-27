@@ -14,14 +14,14 @@ variable "helm_repo" {
 variable "helm_chart" {
   type = string
 }
-variable "chart_params" {
+/* variable "chart_params" {
   type = list(object({
     name  = string
     value = string
     type  = string
   }))
 
-}
+} */
 variable "db_host" {
   type = string
 
@@ -41,4 +41,36 @@ variable "db_user" {
 variable "db_password" {
   type = string
 
+}
+variable "service_acc_name" {
+  type = string
+
+}
+variable "eks_oidc_arn" {
+  type = string
+
+}
+variable "secret_name" {
+  type = string
+
+}
+variable "ingress_name" {
+  type = string
+  
+}
+variable "svc_name" {
+  type = string
+  
+}
+variable "pvc_name" {
+  type = string
+  
+}
+variable "storage_class_name" {
+  type = string
+  
+}
+variable "airflow_email" {
+  type = string
+  
 }

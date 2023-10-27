@@ -5,8 +5,6 @@ module "eks_vpc" {
   tag                       = var.tag
   subnet_availability_zones = var.subnet_availability_zones
   security_group_name       = var.security_group_name
-  ingresses                 = var.ingresses
-  egresses                  = var.egresses
   subnet_tag                = var.subnet_tag
 
 }
@@ -18,8 +16,6 @@ module "rds_vpc" {
   tag                       = var.rds_tag
   subnet_availability_zones = var.subnet_availability_zones
   security_group_name       = var.rds_security_group_name
-  ingresses                 = var.rds_ingresses
-  egresses                  = var.rds_egresses
   subnet_tag                = var.rds_subnet_tag
 
 }
@@ -49,22 +45,33 @@ module "eks" {
   node_group_iam_name   = var.node_group_iam_name
   node_group_name       = var.node_group_name
   node_group_subnet_ids = flatten(module.eks_vpc.0.public_subnet_ids[*])
+  oidc_iam_role_name    = var.oidc_iam_role_name
+  namespace_name        = var.namespace_name
+  service_acc_name      = var.service_acc_name
+  oidc_policy_name      = var.oidc_policy_name
 
 }
 
 module "airflow_helm_chart" {
-  count             = var.enable_workflow == true ? 1 : 0
-  source            = "./helm"
-  namespace_name    = var.namespace_name
-  helm_release_name = var.helm_release_name
-  helm_repo         = var.helm_repo
-  helm_chart        = var.helm_chart
-  chart_params      = var.chart_params
-  db_host           = module.rds.0.db_address
-  db_port           = module.rds.0.db_port
-  db_name           = module.rds.0.db_name
-  db_user           = module.rds.0.db_user
-  db_password       = module.rds.0.db_pass
+  count              = var.enable_workflow == true ? 1 : 0
+  source             = "./helm"
+  namespace_name     = var.namespace_name
+  helm_release_name  = var.helm_release_name
+  helm_repo          = var.helm_repo
+  helm_chart         = var.helm_chart
+  db_host            = module.rds.0.db_address
+  db_port            = module.rds.0.db_port
+  db_name            = module.rds.0.db_name
+  db_user            = module.rds.0.db_user
+  db_password        = module.rds.0.db_pass
+  service_acc_name   = var.service_acc_name
+  eks_oidc_arn       = module.eks.eks_oicd_arn
+  secret_name        = var.secret_name
+  pvc_name           = var.pvc_name
+  storage_class_name = var.storage_class_name
+  svc_name           = var.svc_name
+  airflow_email      = var.airflow_email
+  ingress_name       = var.ingress_name
 
 
 }

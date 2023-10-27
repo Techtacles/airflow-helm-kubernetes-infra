@@ -19,28 +19,7 @@ variable "security_group_name" {
   type = string
 
 }
-variable "ingresses" {
-  type = list(object(
-    {
-      from_port   = number
-      to_port     = number
-      description = string
-      protocol    = string
-      cidr_blocks = list(any)
-    }
-  ))
-}
 
-variable "egresses" {
-  type = list(object(
-    {
-      from_port   = number
-      to_port     = number
-      protocol    = string
-      cidr_blocks = list(any)
-    }
-  ))
-}
 variable "subnet_tag" {
   type = string
 
@@ -63,28 +42,7 @@ variable "rds_security_group_name" {
   type = string
 
 }
-variable "rds_ingresses" {
-  type = list(object(
-    {
-      from_port   = number
-      to_port     = number
-      description = string
-      protocol    = string
-      cidr_blocks = list(any)
-    }
-  ))
-}
 
-variable "rds_egresses" {
-  type = list(object(
-    {
-      from_port   = number
-      to_port     = number
-      protocol    = string
-      cidr_blocks = list(any)
-    }
-  ))
-}
 variable "rds_subnet_tag" {
   type = string
 
@@ -138,6 +96,10 @@ variable "node_group_name" {
   type = string
 
 }
+variable "oidc_iam_role_name" {
+  type = string
+
+}
 
 #HELM
 
@@ -158,11 +120,43 @@ variable "helm_repo" {
 variable "helm_chart" {
   type = string
 }
-variable "chart_params" {
+/* variable "chart_params" {
   type = list(object({
     name  = string
     value = string
     type  = string
   }))
+
+} */
+variable "service_acc_name" {
+  type = string
+
+}
+variable "oidc_policy_name" {
+  type = string
+
+}
+variable "secret_name" {
+  type = string
+
+}
+variable "pvc_name" {
+  type = string
+
+}
+variable "storage_class_name" {
+  type = string
+
+}
+variable "svc_name" {
+  type = string
+
+}
+variable "airflow_email" {
+  type = string
+
+}
+variable "ingress_name" {
+  type = string
 
 }
