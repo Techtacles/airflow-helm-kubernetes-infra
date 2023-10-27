@@ -1,6 +1,7 @@
 resource "kubernetes_service_account_v1" "service_acc" {
   metadata {
     name = var.service_acc_name
+    namespace = kubernetes_namespace_v1.namespace.metadata[0].name
     annotations = {
       "eks.amazonaws.com/role-arn"               = var.eks_oidc_arn
       "eks.amazonaws.com/sts-regional-endpoints" = "true"
@@ -14,6 +15,7 @@ resource "kubernetes_service_account_v1" "service_acc" {
 resource "kubernetes_secret_v1" "secret" {
   metadata {
     name = var.secret_name
+    namespace = kubernetes_namespace_v1.namespace.metadata[0].name
     annotations = {
       "kubernetes.io/service-account.name" = var.service_acc_name
     }
