@@ -35,7 +35,7 @@ serviceAccount:
     eks.amazonaws.com/role-arn: ${eks_oidc_arn}
 
 postgres:
-  enabled: true
+  enabled: false
   image:
     registry: ghcr.io
     repository: airflow-helm/postgresql-bitnami

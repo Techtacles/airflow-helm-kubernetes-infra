@@ -17,7 +17,7 @@ resource "kubernetes_persistent_volume_claim_v1" "pvc" {
 
 resource "kubernetes_persistent_volume_v1" "pv" {
   metadata {
-    name = "airflow-pv"
+    name = "airflow-pv1"
   }
   spec {
     capacity = {
