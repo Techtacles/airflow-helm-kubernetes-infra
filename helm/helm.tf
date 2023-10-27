@@ -9,7 +9,7 @@ resource "helm_release" "airflow_chart" {
   chart      = var.helm_chart
 
   set {
-    name  = "postgres.enabled"
+    name  = "postgresql.enabled"
     value = "false"
   }
 
