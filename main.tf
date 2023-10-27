@@ -52,6 +52,8 @@ module "eks" {
 
 }
 
+
+
 module "airflow_helm_chart" {
   count              = var.enable_workflow == true ? 1 : 0
   source             = "./helm"
@@ -72,6 +74,7 @@ module "airflow_helm_chart" {
   svc_name           = var.svc_name
   airflow_email      = var.airflow_email
   ingress_name       = var.ingress_name
+  ebs_volume         = aws_ebs_volume.ebs_pvc.id
 
 
 }

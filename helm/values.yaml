@@ -24,7 +24,6 @@ ingress:
   enabled: true
   web:
     host: ${lb_host}
-    path: "/"
     tls:
       enabled: true
       secretName: ${secret_name}

@@ -56,21 +56,25 @@ variable "secret_name" {
 }
 variable "ingress_name" {
   type = string
-  
+
 }
 variable "svc_name" {
   type = string
-  
+
 }
 variable "pvc_name" {
   type = string
-  
+
 }
 variable "storage_class_name" {
   type = string
-  
+
 }
 variable "airflow_email" {
   type = string
-  
+
+}
+variable "ebs_volume" {
+  type = string
+
 }
