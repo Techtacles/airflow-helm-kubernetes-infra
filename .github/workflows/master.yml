@@ -52,10 +52,10 @@ jobs:
     - name: Terraform Format
       run: terraform fmt -check
 
-    # - name: Terraform State Rm helm module 
-    #   run: |
-    #     terraform state rm 'module.airflow_helm_chart[0]'
-    #   continue-on-error: true
+    - name: Terraform State Rm eks module 
+      run: |
+        terraform state rm 'module.eks[0]'
+      continue-on-error: true
 
       
     # Generates an execution plan for Terraform
