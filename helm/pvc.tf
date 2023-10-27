@@ -11,7 +11,7 @@ resource "kubernetes_persistent_volume_claim_v1" "pvc" {
         storage = "5Gi"
       }
     }
-    volume_name = "${kubernetes_persistent_volume.pv.metadata.0.name}"
+    volume_name = "${kubernetes_persistent_volume_v1.pv.metadata.0.name}"
   }
 }
 
