@@ -53,7 +53,9 @@ module "eks" {
 }
 
 resource "null_resource" "create_kube_config" {
-  triggers   = timestamp()
+  triggers = {
+    always = timestamp()
+  }
   depends_on = [module.eks]
   provisioner "local-exec" {
     command = "aws eks update-kubeconfig --region us-east-1 --name ${var.eks_cluster_name}"
