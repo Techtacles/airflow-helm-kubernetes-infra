@@ -8,11 +8,15 @@ resource "helm_release" "airflow_chart" {
   repository = var.helm_repo
   chart      = var.helm_chart
   depends_on = [kubernetes_service_account_v1.service_acc]
-
-  set {
-    name  = "postgresql.enabled"
-    value = "false"
+  dynamic "set" {
+    for_each = local.modify_params
+    content {
+      name = set.value.name
+      value = set.value.value
+    }
+    
   }
+  
 
 
   values = [
