@@ -7,6 +7,7 @@ resource "helm_release" "airflow_chart" {
 
   repository = var.helm_repo
   chart      = var.helm_chart
+  depends_on = [kubernetes_service_account_v1.service_acc]
 
   set {
     name  = "postgresql.enabled"

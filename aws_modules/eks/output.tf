@@ -34,3 +34,4 @@ output "eks_oicd_arn" {
   value = aws_iam_role.oidc_iam_role.arn
 
 }
+
