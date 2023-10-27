@@ -54,7 +54,7 @@ jobs:
 
     - name: Terraform State Rm eks module 
       run: |
-        terraform state rm 'module.airflow_chart[0]'
+        terraform state rm 'module.airflow_helm_chart[0]'
       continue-on-error: true
 
 
