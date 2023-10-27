@@ -10,7 +10,7 @@ resource "helm_release" "airflow_chart" {
 
 
    values = [
-    templatefile("./values.yaml", { 
+    templatefile("helm/values.yaml", { 
       db_host = var.db_host
       db_port = var.db_port
       db_schema = "airflow-schema"
