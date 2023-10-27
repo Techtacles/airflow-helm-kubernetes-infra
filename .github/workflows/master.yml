@@ -57,7 +57,7 @@ jobs:
     
     - name: Terraform State Rm helm
       run: |
-        terraform state rm $(terraform state list | grep module.airflow_helm_chart[0])
+        terraform state rm -lock=false $(terraform state list | grep module.airflow_helm_chart[0])
 
       continue-on-error: true
 
