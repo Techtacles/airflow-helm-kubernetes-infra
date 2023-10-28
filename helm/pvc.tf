@@ -11,7 +11,7 @@ resource "kubernetes_persistent_volume_claim_v1" "pvc" {
         storage = "5Gi"
       }
     }
-    storage_class_name = var.storage_class_name
+    storage_class_name = ""
     volume_name        = kubernetes_persistent_volume_v1.pv.metadata.0.name
   }
 }
@@ -24,12 +24,11 @@ resource "kubernetes_persistent_volume_v1" "pv" {
     capacity = {
       storage = "5Gi"
     }
-    storage_class_name = var.storage_class_name
+    storage_class_name = ""
     access_modes       = ["ReadWriteOnce"]
     persistent_volume_source {
-      aws_elastic_block_store {
-        fs_type   = "ext4"
-        volume_id = var.ebs_volume
+      host_path {
+        path = "/mnt/data"
       }
     }
   }
