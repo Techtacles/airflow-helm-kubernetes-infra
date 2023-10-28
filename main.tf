@@ -72,7 +72,7 @@ module "airflow_helm_chart" {
   airflow_email      = var.airflow_email
   ingress_name       = var.ingress_name
   ebs_volume         = aws_ebs_volume.ebs_pvc.id
-  rds_address        = module.rds.db_address
+  rds_address        = module.rds[*].db_address
 
 
 }

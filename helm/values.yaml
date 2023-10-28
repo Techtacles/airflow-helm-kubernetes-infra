@@ -55,10 +55,4 @@ data:
     db: postgres
     user: postgres
     pass: postgres
-  #resultBackendConnection:
-  #   protocol: postgresql
-  #    host: ${db_host}
-  #    port: ${db_port}
-  #    db: ${db_schema}
-  #    user: ${db_user}
-  #    pass: ${db_password}
+
