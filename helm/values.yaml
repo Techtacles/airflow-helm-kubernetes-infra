@@ -34,7 +34,7 @@ logs:
     existingClaim: ${pvc_name}
 
 redis:
-  enabled: false
+  enabled: true
 
 pgbouncer:
   enabled: true
