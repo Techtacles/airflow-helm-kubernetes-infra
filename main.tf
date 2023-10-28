@@ -57,6 +57,7 @@ resource "null_resource" "update_config" {
   }
   provisioner "local-exec" {
     command = <<EOT
+      aws --version
       aws eks update-kubeconfig --region us-east-1 --name ${var.eks_cluster_name}
       ls -al
       cd .kube
