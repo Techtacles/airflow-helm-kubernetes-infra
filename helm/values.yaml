@@ -17,7 +17,7 @@ webserver:
       - name: airflow-ui
         port: 8080
         targetPort: 8080
-        nodePort: 31151
+        nodePort: 30050
 
 
 dags:
