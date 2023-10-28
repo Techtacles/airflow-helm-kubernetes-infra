@@ -11,8 +11,8 @@ resource "kubernetes_persistent_volume_claim_v1" "pvc" {
         storage = "5Gi"
       }
     }
-    #storage_class_name = var.storage_class_name
-    volume_name = kubernetes_persistent_volume_v1.pv.metadata.0.name
+    storage_class_name = var.storage_class_name
+    volume_name        = kubernetes_persistent_volume_v1.pv.metadata.0.name
   }
 }
 
@@ -24,8 +24,8 @@ resource "kubernetes_persistent_volume_v1" "pv" {
     capacity = {
       storage = "5Gi"
     }
-    #storage_class_name = var.storage_class_name
-    access_modes = ["ReadWriteOnce"]
+    storage_class_name = var.storage_class_name
+    access_modes       = ["ReadWriteOnce"]
     persistent_volume_source {
       csi {
         driver        = "ebs.csi.aws.com"
