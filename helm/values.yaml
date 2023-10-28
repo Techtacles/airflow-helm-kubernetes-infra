@@ -35,6 +35,10 @@ logs:
 
 redis:
   enabled: true
+  persistence:
+    enabled: true
+    storageClassName: ${storage_class_name}
+
 
 pgbouncer:
   enabled: true
@@ -55,3 +59,12 @@ data:
     user: postgres
     pass: postgres
 
+postgresql:
+  enabled: true
+  image:
+    tag: "11"
+  auth:
+    enablePostgresUser: true
+    postgresPassword: postgres
+    username: postgres
+    password: postgres
