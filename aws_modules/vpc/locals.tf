@@ -1,15 +1,15 @@
 locals {
   inbound_ports = [{
     name  = 80,
-    value = ["0.0.0.0/0"]
+    cidr = ["0.0.0.0/0"]
     },
     {
       name  = 22,
-      value = ["0.0.0.0/0"]
+      cidr = ["0.0.0.0/0"]
     },
     {
       name  = 5432,
-      value = flatten(aws_subnet.private_subnet[*].cidr_block)
+      cidr = flatten(aws_subnet.private_subnet[*].cidr_block)
   }]
   outbound_ports = [0]
 }
