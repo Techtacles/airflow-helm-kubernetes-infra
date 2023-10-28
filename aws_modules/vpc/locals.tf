@@ -8,7 +8,7 @@ locals {
       value = ["0.0.0.0/0"]
     },
     {
-      name  = 80,
+      name  = 5432,
       value = flatten(aws_subnet.private_subnet[*].cidr_block)
   }]
   outbound_ports = [0]
