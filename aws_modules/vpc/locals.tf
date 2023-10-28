@@ -14,7 +14,3 @@ locals {
   outbound_ports = [0]
 }
 
-resource "random_string" "random" {
-  length = 4
-  lower  = true
-}

@@ -8,10 +8,10 @@ resource "kubernetes_persistent_volume_claim_v1" "pvc" {
     access_modes = ["ReadWriteOnce"]
     resources {
       requests = {
-        storage = "5Gi"
+        storage = "10Gi"
       }
     }
-    storage_class_name = ""
+    storage_class_name = "standard"
     volume_name        = kubernetes_persistent_volume_v1.pv.metadata.0.name
   }
 }
@@ -22,9 +22,9 @@ resource "kubernetes_persistent_volume_v1" "pv" {
   }
   spec {
     capacity = {
-      storage = "5Gi"
+      storage = "10Gi"
     }
-    storage_class_name = ""
+    storage_class_name = "standard"
     access_modes       = ["ReadWriteOnce"]
     persistent_volume_source {
       host_path {

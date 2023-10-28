@@ -1,5 +1,5 @@
 resource "aws_security_group" "allow_tls" {
-  name        = "${var.security_group_name}-${random_string.random.result}"
+  name        = "${var.security_group_name}"
   vpc_id      = aws_vpc.vpc.id
   description = "Security group for subnets"
   depends_on  = [aws_vpc.vpc]
