@@ -1,23 +1,22 @@
 webserver:
-  serviceAccount:
-    automountServiceAccountToken: true
-    create: false
-    name: ${service_account_name}
-  defaultUser:
-    enabled: false
-    username: ${airflow_username}
-    password: ${airflow_password}
-    role: ${airflow_role}
-    email: ${airflow_email}
-    firstName: ${airflow_firstname}
-    lastName: ${airflow_lastname}
-  service:
-    type: NodePort
-    ports:
-      - name: airflow-ui
-        port: 8080
-        targetPort: 8080
-        nodePort: 30050
+  # serviceAccount:
+  #   automountServiceAccountToken: true
+  #   create: true
+  # defaultUser:
+  #   enabled: false
+  #   username: ${airflow_username}
+  #   password: ${airflow_password}
+  #   role: ${airflow_role}
+  #   email: ${airflow_email}
+  #   firstName: ${airflow_firstname}
+  #   lastName: ${airflow_lastname}
+  # service:
+  #   type: NodePort
+  #   ports:
+  #     - name: airflow-ui
+  #       port: 8080
+  #       targetPort: 8080
+  #       nodePort: 30050
   readinessProbe:
     initialDelaySeconds: 500
     periodSeconds: 40
@@ -40,22 +39,24 @@ logs:
 pgbouncer:
   enabled: true
 
+rbac:
+  createSCCRoleBinding: true
 
-data:
-  metadataConnection:
-    protocol: postgresql
-    host: ~
-    port: 5432
-    db: postgres
-    user: postgres
-    pass: postgres
+# data:
+#   metadataConnection:
+#     protocol: postgresql
+#     host: ~
+#     port: 5432
+#     db: postgres
+#     user: postgres
+#     pass: postgres
 
-postgresql:
-  enabled: true
-  image:
-    tag: "11"
-  auth:
-    enablePostgresUser: true
-    postgresPassword: postgres
-    username: postgres
-    password: postgres
+# postgresql:
+#   enabled: true
+#   image:
+#     tag: "11"
+#   auth:
+#     enablePostgresUser: true
+#     postgresPassword: postgres
+#     username: postgres
+#     password: postgres
