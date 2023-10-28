@@ -2,14 +2,14 @@ webserver:
   # serviceAccount:
   #   automountServiceAccountToken: true
   #   create: true
-  defaultUser:
-    enabled: false
-    username: ${airflow_username}
-    password: ${airflow_password}
-    role: ${airflow_role}
-    email: ${airflow_email}
-    firstName: ${airflow_firstname}
-    lastName: ${airflow_lastname}
+  # defaultUser:
+  #   enabled: false
+  #   username: ${airflow_username}
+  #   password: ${airflow_password}
+  #   role: ${airflow_role}
+  #   email: ${airflow_email}
+  #   firstName: ${airflow_firstname}
+  #   lastName: ${airflow_lastname}
   # service:
   #   type: NodePort
   #   ports:
