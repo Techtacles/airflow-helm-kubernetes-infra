@@ -60,6 +60,7 @@ resource "null_resource" "update_config" {
       aws eks update-kubeconfig --region us-east-1 --name ${var.eks_cluster_name}
       cat /home/runner/.kube/config >> config.yaml
       ls -al
+      pwd
     EOT
   }
 }
