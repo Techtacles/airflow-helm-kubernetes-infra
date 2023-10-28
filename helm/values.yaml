@@ -34,11 +34,11 @@ webserver:
 redis:
   persistence: 
     size: 10Gi
-    storageClassName: standard
+    storageClassName: ${svc_name}
 logs:
   persistence:
     enabled: true
-    storageClassName: standard
+    storageClassName: ${svc_name}
     size: 10Gi
     existingClaim: ${pvc_name}
 
@@ -49,10 +49,7 @@ scheduler:
 pgbouncer:
   enabled: true
 
-triggerer:
-  persistence:
-    size: 10Gi
-    storageClassName: standard
+
 
 # rbac:
 #   createSCCRoleBinding: true

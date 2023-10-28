@@ -11,7 +11,7 @@ resource "kubernetes_persistent_volume_claim_v1" "pvc" {
         storage = "10Gi"
       }
     }
-    storage_class_name = "standard"
+    storage_class_name = var.storage_class_name
     volume_name        = kubernetes_persistent_volume_v1.pv.metadata.0.name
   }
 }
@@ -24,11 +24,12 @@ resource "kubernetes_persistent_volume_v1" "pv" {
     capacity = {
       storage = "10Gi"
     }
-    storage_class_name = "standard"
     access_modes       = ["ReadWriteOnce"]
+    storage_class_name = var.storage_class_name
     persistent_volume_source {
-      host_path {
-        path = "/mnt/data"
+      csi {
+        driver        = "ebs.csi.aws.com"
+        volume_handle = var.ebs_volume
       }
     }
   }

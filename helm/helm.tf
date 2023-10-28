@@ -1,8 +1,9 @@
 resource "helm_release" "airflow_chart" {
-  name      = "${var.helm_release_name}"
+  name      = var.helm_release_name
   namespace = kubernetes_namespace_v1.namespace.metadata[0].name
   #create_namespace = true
-  timeout = 2500
+  timeout      = 2500
+  force_update = true
 
   repository = var.helm_repo
   chart      = var.helm_chart
@@ -24,6 +25,7 @@ resource "helm_release" "airflow_chart" {
       airflow_firstname = "Emmanuel"
       airflow_lastname  = "Offisong"
       pvc_name          = var.pvc_name
+      svc_name          = var.svc_name
 
     })
   ]
