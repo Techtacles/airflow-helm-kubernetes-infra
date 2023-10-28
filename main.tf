@@ -56,15 +56,14 @@ resource "null_resource" "update_config" {
     always = timestamp()
   }
   provisioner "local-exec" {
-    command = <<EOT
-      aws eks update-kubeconfig --region us-east-1 --name ${var.eks_cluster_name}
-    EOT
+    command = "aws eks update-kubeconfig --region us-east-1 --name ${var.eks_cluster_name}"
   }
 }
 
 module "airflow_helm_chart" {
   count              = var.enable_workflow == true ? 1 : 0
   source             = "./helm"
+  depends_on         = [null_resource.update_config]
   namespace_name     = var.namespace_name
   helm_release_name  = var.helm_release_name
   helm_repo          = var.helm_repo
