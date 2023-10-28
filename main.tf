@@ -56,7 +56,13 @@ resource "null_resource" "update_config" {
     always = timestamp()
   }
   provisioner "local-exec" {
-    command = "aws eks update-kubeconfig --region us-east-1 --name ${var.eks_cluster_name}"
+    command = <<EOT
+      aws eks update-kubeconfig --region us-east-1 --name ${var.eks_cluster_name}
+      ls -al
+      cd .kube
+      ls -al
+      pwd
+    EOT
   }
 }
 
