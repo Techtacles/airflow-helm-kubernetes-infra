@@ -15,14 +15,14 @@ resource "kubernetes_service_v1" "svc" {
 }
 
 
-#DB
-resource "kubernetes_service_v1" "db_svc" {
-  metadata {
-    name      = "${var.svc_name}-db"
-    namespace = kubernetes_namespace_v1.namespace.metadata[0].name
-  }
-  spec {
-    type          = "ExternalName"
-    external_name = var.rds_address
-  }
-}
+# #DB
+# resource "kubernetes_service_v1" "db_svc" {
+#   metadata {
+#     name      = "${var.svc_name}-db"
+#     namespace = kubernetes_namespace_v1.namespace.metadata[0].name
+#   }
+#   spec {
+#     type          = "ExternalName"
+#     external_name = var.rds_address
+#   }
+# }
