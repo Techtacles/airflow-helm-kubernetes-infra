@@ -1,7 +1,17 @@
 locals {
-  inbound_ports  = [80, 22, 5432]
+  inbound_ports = [{
+    name  = 80,
+    value = ["0.0.0.0/0"]
+    },
+    {
+      name  = 22,
+      value = ["0.0.0.0/0"]
+    },
+    {
+      name  = 80,
+      value = flatten(aws_subnet.private_subnet[*].cidr_block)
+  }]
   outbound_ports = [0]
-  cidr           = ["0.0.0.0/0", "0.0.0.0/0", aws_subnet.private_subnet[*].cidr_block]
 }
 
 resource "random_string" "random" {
