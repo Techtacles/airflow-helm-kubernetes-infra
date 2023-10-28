@@ -31,7 +31,6 @@ logs:
   persistence:
     enabled: true
     storageClassName: ${storage_class_name}
-    accessMode: ReadWriteMany
     existingClaim: ${pvc_name}
 
 redis:
