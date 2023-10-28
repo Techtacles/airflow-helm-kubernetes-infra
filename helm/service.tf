@@ -18,7 +18,7 @@ resource "kubernetes_service_v1" "svc" {
 #DB
 resource "kubernetes_service_v1" "db_svc" {
   metadata {
-    name      = "${var.svc_name}_db"
+    name      = "${var.svc_name}-db"
     namespace = kubernetes_namespace_v1.namespace.metadata[0].name
   }
   spec {
