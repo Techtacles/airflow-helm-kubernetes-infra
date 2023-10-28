@@ -1,3 +1,4 @@
+#TO change
 resource "kubernetes_service_v1" "svc" {
   metadata {
     name      = var.svc_name
@@ -7,8 +8,21 @@ resource "kubernetes_service_v1" "svc" {
     port {
       port        = 8080
       target_port = 8080
+      node_port   = 31151
     }
-    type = "LoadBalancer"
+    type = "NodePort"
   }
-  wait_for_load_balancer = true
+}
+
+
+#DB
+resource "kubernetes_service_v1" "db_svc" {
+  metadata {
+    name      = "${var.svc_name}_db"
+    namespace = kubernetes_namespace_v1.namespace.metadata[0].name
+  }
+  spec {
+    type          = "ExternalName"
+    external_name = var.rds_address
+  }
 }

@@ -5,26 +5,26 @@ locals {
   },
   {
     name = "scheduler.replicas"
-    value = "2"
+    value = "1"
   },
   {
     name = "web.replicas"
-    value = "2"
+    value = "1"
   },
   {
     name = "worker.replicas"
-    value = "2"
+    value = "1"
   },
   {
     name = "worker.autoscaling.maxReplicas"
-    value = "false"
+    value = "2"
   },
   {
     name = "triggerer.replicas"
-    value = "2"
+    value = "1"
   },
   {
     name = "flower.replicas"
-    value = "2"
+    value = "1"
   }]
 }

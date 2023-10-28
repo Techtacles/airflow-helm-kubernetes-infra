@@ -1,52 +1,64 @@
-externalDatabase:
-  type: postgres
-  host: ${db_host}
-  port: ${db_port}
-  database: ${db_schema}
-  user: ${db_user}
-  password: ${db_password}
-
-airflow: 
-  users:
-    - username: ${airflow_username}
-      password: ${airflow_password}
-      role: ${airflow_role}
-      email: ${airflow_email}
-      firstName: ${airflow_firstname}
-      lastName: ${airflow_lastname}
-
-web:
+webserver:
+  serviceAccount:
+    automountServiceAccountToken: true
+    create: false
+    name: ${service_account_name}
+  defaultUser:
+    enabled: false
+    username: ${airflow_username}
+    password: ${airflow_password}
+    role: ${airflow_role}
+    email: ${airflow_email}
+    firstName: ${airflow_firstname}
+    lastName: ${airflow_lastname}
   service:
-    type: LoadBalancer
-    externalPort: 8080
+    type: NodePort
+    ports:
+      - name: airflow-ui
+        port: 8080
+        targetPort: 8080
+        nodePort: 31151
 
-ingress:
-  enabled: true
-  web:
-    host: ${lb_host}
-    tls:
-      enabled: true
-      secretName: ${secret_name}
 
-serviceAccount:
-  create: false
-  name: ${service_account_name}
-  annotations: 
-    eks.amazonaws.com/role-arn: ${eks_oidc_arn}
-
-postgres:
-  enabled: false
-  image:
-    registry: ghcr.io
-    repository: airflow-helm/postgresql-bitnami
-    tag: 11.16-patch.0
-    pullPolicy: IfNotPresent
-  postgresqlDatabase: airflow
-  postgresqlUsername: postgres
-  postgresqlPassword: ${db_password}
+dags:
   persistence:
     enabled: true
-    storageClass: ${storage_class}
-    accessModes:
-      - ReadWriteMany
-    size: 5Gi
+    storageClassName: ${storage_class_name}
+    accessMode: ReadWriteMany
+    existingClaim: ${pvc_name}
+
+logs:
+  persistence:
+    enabled: true
+    storageClassName: ${storage_class_name}
+    accessMode: ReadWriteMany
+    existingClaim: ${pvc_name}
+
+redis:
+  enabled: false
+
+pgbouncer:
+  enabled: true
+
+triggerer:
+  serviceAccount:
+    create: false
+    name: ${service_account_name}
+  persistence:
+    storageClassName: ${storage_class_name}
+
+data:
+  metadataConnection:
+    protocol: postgresql
+    host: ~
+    port: 5432
+    db: postgres
+    user: postgres
+    pass: postgres
+  #resultBackendConnection:
+  #   protocol: postgresql
+  #    host: ${db_host}
+  #    port: ${db_port}
+  #    db: ${db_schema}
+  #    user: ${db_user}
+  #    pass: ${db_password}

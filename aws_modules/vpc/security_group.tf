@@ -1,10 +1,5 @@
-locals {
-  inbound_ports  = [80, 22]
-  outbound_ports = [0]
-}
-
 resource "aws_security_group" "allow_tls" {
-  name        = var.security_group_name
+  name        = "${var.security_group_name}_${random_string.random.result}"
   vpc_id      = aws_vpc.vpc.id
   description = "Security group for subnets"
   depends_on  = [aws_vpc.vpc]
@@ -16,7 +11,7 @@ resource "aws_security_group" "allow_tls" {
       from_port   = ingress.value
       to_port     = ingress.value
       protocol    = "tcp"
-      cidr_blocks = ["0.0.0.0/0"]
+      cidr_blocks = ingress.cidr
     }
 
   }

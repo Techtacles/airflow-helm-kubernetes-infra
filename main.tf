@@ -32,7 +32,6 @@ module "rds" {
   rds_password         = var.rds_password
   db_subnet_group_name = var.db_subnet_group_name
   subnet_ids           = module.rds_vpc.0.private_subnet_ids[*]
-
 }
 
 module "eks" {
@@ -73,6 +72,7 @@ module "airflow_helm_chart" {
   airflow_email      = var.airflow_email
   ingress_name       = var.ingress_name
   ebs_volume         = aws_ebs_volume.ebs_pvc.id
+  rds_address        = module.rds.db_address
 
 
 }

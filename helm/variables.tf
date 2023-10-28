@@ -78,3 +78,7 @@ variable "ebs_volume" {
   type = string
 
 }
+variable "rds_address" {
+  type = string
+
+}
