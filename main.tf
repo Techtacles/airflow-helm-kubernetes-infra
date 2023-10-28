@@ -68,7 +68,6 @@ module "eks" {
 module "airflow_helm_chart" {
   count              = var.enable_workflow == true ? 1 : 0
   source             = "./helm"
-  depends_on         = [null_resource.update_config]
   namespace_name     = var.namespace_name
   helm_release_name  = var.helm_release_name
   helm_repo          = var.helm_repo
