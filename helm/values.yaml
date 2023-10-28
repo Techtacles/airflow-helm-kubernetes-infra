@@ -18,14 +18,17 @@ webserver:
         port: 8080
         targetPort: 8080
         nodePort: 30050
+  readinessProbe:
+    initialDelaySeconds: 500
+    periodSeconds: 40
 
+  livenessProbe:
+    initialDelaySeconds: 500
+    periodSeconds: 40
 
-dags:
-  persistence:
-    enabled: true
-    storageClassName: ${storage_class_name}
-    accessMode: ReadWriteMany
-    existingClaim: ${pvc_name}
+  startupProbe:
+    timeoutSeconds: 200
+    periodSeconds: 40
 
 logs:
   persistence:
@@ -33,22 +36,10 @@ logs:
     storageClassName: ${storage_class_name}
     existingClaim: ${pvc_name}
 
-redis:
-  enabled: true
-  persistence:
-    enabled: true
-    storageClassName: ${storage_class_name}
-
 
 pgbouncer:
   enabled: true
 
-triggerer:
-  serviceAccount:
-    create: false
-    name: ${service_account_name}
-  persistence:
-    storageClassName: ${storage_class_name}
 
 data:
   metadataConnection:
