@@ -31,6 +31,16 @@ webserver:
   waitForMigrations:
     enabled: false
 
+redis:
+  persistence: 
+    size: 10Gi
+    storageClassName: standard
+logs:
+  persistence:
+    enabled: true
+    storageClassName: standard
+    size: 10Gi
+    existingClaim: ${pvc_name}
 
 scheduler:
   waitForMigrations:
@@ -38,6 +48,11 @@ scheduler:
 
 pgbouncer:
   enabled: true
+
+triggerer:
+  persistence:
+    size: 10Gi
+    storageClassName: standard
 
 # rbac:
 #   createSCCRoleBinding: true

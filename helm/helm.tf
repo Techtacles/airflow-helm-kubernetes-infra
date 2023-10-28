@@ -2,7 +2,7 @@ resource "helm_release" "airflow_chart" {
   name      = "${var.helm_release_name}-1"
   namespace = kubernetes_namespace_v1.namespace.metadata[0].name
   #create_namespace = true
-  timeout      = 2500
+  timeout = 2500
 
   repository = var.helm_repo
   chart      = var.helm_chart
@@ -17,14 +17,13 @@ resource "helm_release" "airflow_chart" {
 
   values = [
     templatefile("helm/values.yaml", {
-      airflow_username     = "airflow"
-      airflow_password     = var.db_password
-      airflow_role         = "Admin"
-      airflow_email        = var.airflow_email
-      airflow_firstname    = "Emmanuel"
-      airflow_lastname     = "Offisong"
-      # storage_class_name   = var.storage_class_name
-      # pvc_name             = var.pvc_name
+      airflow_username  = "airflow"
+      airflow_password  = var.db_password
+      airflow_role      = "Admin"
+      airflow_email     = var.airflow_email
+      airflow_firstname = "Emmanuel"
+      airflow_lastname  = "Offisong"
+      pvc_name          = var.pvc_name
 
     })
   ]
