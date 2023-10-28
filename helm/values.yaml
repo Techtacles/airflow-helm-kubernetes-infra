@@ -29,11 +29,7 @@ webserver:
     timeoutSeconds: 200
     periodSeconds: 40
 
-logs:
-  persistence:
-    enabled: true
-    storageClassName: ${storage_class_name}
-    existingClaim: ${pvc_name}
+
 
 
 pgbouncer:

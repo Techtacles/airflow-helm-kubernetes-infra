@@ -24,8 +24,8 @@ resource "helm_release" "airflow_chart" {
       airflow_email        = var.airflow_email
       airflow_firstname    = "Emmanuel"
       airflow_lastname     = "Offisong"
-      storage_class_name   = var.storage_class_name
-      pvc_name             = var.pvc_name
+      # storage_class_name   = var.storage_class_name
+      # pvc_name             = var.pvc_name
 
     })
   ]
