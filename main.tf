@@ -59,10 +59,9 @@ resource "null_resource" "update_config" {
     command = <<EOT
       aws --version
       aws eks update-kubeconfig --region us-east-1 --name ${var.eks_cluster_name}
+      ls -al /home/runner/.kube
+      cd /home/runner/
       ls -al
-      cd .kube
-      ls -al
-      pwd
     EOT
   }
 }
