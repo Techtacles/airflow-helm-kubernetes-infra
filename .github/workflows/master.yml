@@ -42,9 +42,9 @@ jobs:
         role-to-assume: ${{ secrets.AWS_WEB_IDENTITY_ROLE_ARN }}
         aws-region: ${{ secrets.AWS_REGION }}
 
-    # - name: Kubeconfig
-    #   run: aws eks update-kubeconfig --region us-east-1 --name airflow-eks-cluster
-    #   continue-on-error: true
+    - name: Kubeconfig
+      run: aws eks update-kubeconfig --region us-east-1 --name airflow-eks-cluster
+      continue-on-error: true
 
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
