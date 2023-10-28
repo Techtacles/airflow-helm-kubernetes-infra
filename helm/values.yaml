@@ -39,8 +39,8 @@ logs:
 pgbouncer:
   enabled: true
 
-rbac:
-  createSCCRoleBinding: true
+# rbac:
+#   createSCCRoleBinding: true
 
 # data:
 #   metadataConnection:

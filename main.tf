@@ -50,6 +50,16 @@ module "eks" {
   oidc_policy_name      = var.oidc_policy_name
 
 }
+resource "null_resource" "update_config" {
+  triggers = {
+    always = timestamp()
+  }
+  provisioner "local-exec" {
+    command = <<EOT
+      aws eks update-kubeconfig --region us-east-1 --name ${var.eks_cluster_name}
+    EOT
+  }
+}
 
 module "airflow_helm_chart" {
   count              = var.enable_workflow == true ? 1 : 0
