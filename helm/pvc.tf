@@ -27,9 +27,9 @@ resource "kubernetes_persistent_volume_v1" "pv" {
     storage_class_name = var.storage_class_name
     access_modes       = ["ReadWriteOnce"]
     persistent_volume_source {
-      csi {
-        driver        = "ebs.csi.aws.com"
-        volume_handle = var.ebs_volume
+      aws_elastic_block_store {
+        fs_type   = "ext4"
+        volume_id = var.ebs_volume
       }
     }
   }
