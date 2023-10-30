@@ -28,15 +28,15 @@ redis:
 
 workers:
   persistence:
-    enabled: true
-    size: 10Gi
-    storageClassName: ${svc_name}
+    enabled: false
+    #size: 10Gi
+    #storageClassName: ${svc_name}
 
 triggerer:
   persistence:
-    enabled: true
-    size: 10Gi
-    storageClassName: ${svc_name}
+    enabled: false
+    #size: 10Gi
+    #storageClassName: ${svc_name}
 
 # logs:
 #   persistence:
