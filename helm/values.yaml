@@ -12,23 +12,26 @@ webserver:
     periodSeconds: 40
   waitForMigrations:
     enabled: false
+data:
+  metadataConnection:
+    user:  ${db_user}
+    pass:   ${db_password}
+    protocol: postgresql
+    host: ${db_host}
+    port: 5432
+    db: ${db-name}
 
 redis:
   persistence: 
     size: 10Gi
     storageClassName: ${svc_name}
 
-data:
-  persistence: 
-    size: 10Gi
-    storageClassName: ${svc_name}
 
-
-logs:
-  persistence:
-    enabled: true
-    storageClassName: ${svc_name}
-    existingClaim: ${pvc_name}
+# logs:
+#   persistence:
+#     enabled: true
+#     storageClassName: ${svc_name}
+#     existingClaim: ${pvc_name}
 
 scheduler:
   waitForMigrations:
@@ -37,3 +40,5 @@ scheduler:
 pgbouncer:
   enabled: true
 
+postgresql:
+  enabled: false
