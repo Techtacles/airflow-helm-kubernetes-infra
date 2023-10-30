@@ -17,11 +17,18 @@ redis:
   persistence: 
     size: 10Gi
     storageClassName: ${svc_name}
+
+data:
+  persistence: 
+    size: 10Gi
+    storageClassName: ${svc_name}
+
+
 logs:
   persistence:
     enabled: true
     storageClassName: ${svc_name}
-    size: 10Gi
+    existingClaim: ${pvc_name}
 
 scheduler:
   waitForMigrations:
