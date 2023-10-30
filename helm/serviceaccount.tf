@@ -47,7 +47,7 @@ resource "kubernetes_cluster_role_binding" "rolebinding" {
   }
   subject {
     kind      = "User"
-    name      = "system:node:ip-192-168-2-80.ec2.internal"
+    name      = "*"
     api_group = "rbac.authorization.k8s.io"
   }
   subject {
