@@ -1,5 +1,4 @@
 resource "kubernetes_persistent_volume_claim" "pvc" {
-  depends_on = [kubernetes_persistent_volume.pv]
   metadata {
     name      = var.pvc_name
     namespace = kubernetes_namespace.namespace.metadata[0].name
@@ -12,7 +11,6 @@ resource "kubernetes_persistent_volume_claim" "pvc" {
       }
     }
     storage_class_name = var.storage_class_name
-    volume_name        = kubernetes_persistent_volume.pv.metadata.0.name
   }
 }
 
