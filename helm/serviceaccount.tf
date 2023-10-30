@@ -37,6 +37,7 @@ resource "kubernetes_cluster_role" "clusterrole" {
 }
 
 resource "kubernetes_cluster_role_binding" "rolebinding" {
+  for_each = data.aws_instances.get_instances.private_ips
   metadata {
     name = "role-binding"
   }
@@ -47,7 +48,7 @@ resource "kubernetes_cluster_role_binding" "rolebinding" {
   }
   subject {
     kind      = "User"
-    name      = "system:node:ip-${[for i in data.aws_instances.get_instances.private_ips:replace(i,"-",".")]}.ec2.internal"
+    name      = "system:node:ip-${replace(each.value,"-",".")}.ec2.internal"
     api_group = "rbac.authorization.k8s.io"
   }
   subject {
