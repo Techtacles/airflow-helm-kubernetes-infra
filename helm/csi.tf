@@ -1,12 +1,13 @@
-# resource "helm_release" "ebs_csi_driver" {
-#   name       = "aws-ebs-csi-driver"
-#   namespace  = var.namespace_name
-#   repository = "https://kubernetes-sigs.github.io/aws-ebs-csi-driver"
-#   chart      = "aws-ebs-csi-driver"
+module "aws_ebs_csi_driver_iam" {
+  source                = "github.com/andreswebs/terraform-aws-eks-ebs-csi-driver//modules/iam"
+  cluster_oidc_provider = var.eks_oidc_arn
+  k8s_namespace         = var.namespace_name
+  iam_role_name         = "ebs-csi-controller-role"
+}
 
-#   set {
-#     name  = "controller.serviceAccount.annotations.eks\\.amazonaws\\.com/role-arn"
-#     type  = "string"
-#     value = var.eks_oidc_arn
-#   }
-# }
+module "aws_ebs_csi_driver_resources" {
+  depends_on                       = [module.aws_ebs_csi_driver_iam]
+  source                           = "github.com/andreswebs/terraform-aws-eks-ebs-csi-driver//modules/resources"
+  cluster_name                     = var.eks_cluster_id
+  iam_role_arn                     = module.aws_ebs_csi_driver_iam.role
+}

@@ -1,6 +1,6 @@
 resource "kubernetes_namespace" "namespace" {
   metadata {
 
-    name = "${var.namespace_name}-new"
+    name = "${var.namespace_name}-new-new"
   }
 }
