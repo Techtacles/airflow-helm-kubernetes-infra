@@ -1,8 +1,8 @@
 resource "kubernetes_ingress_v1" "ingress" {
-  depends_on = [kubernetes_service_v1.svc]
+  depends_on = [kubernetes_service.svc]
   metadata {
     name      = var.ingress_name
-    namespace = kubernetes_namespace_v1.namespace.metadata[0].name
+    namespace = kubernetes_namespace.namespace.metadata[0].name
 
   }
 

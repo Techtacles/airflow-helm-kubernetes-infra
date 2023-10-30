@@ -1,8 +1,8 @@
 #TO change
-resource "kubernetes_service_v1" "svc" {
+resource "kubernetes_service" "svc" {
   metadata {
     name      = var.svc_name
-    namespace = kubernetes_namespace_v1.namespace.metadata[0].name
+    namespace = kubernetes_namespace.namespace.metadata[0].name
   }
   spec {
     port {

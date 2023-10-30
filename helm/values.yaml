@@ -31,10 +31,10 @@ webserver:
   waitForMigrations:
     enabled: false
 
-redis:
-  persistence: 
-    size: 10Gi
-    storageClassName: ${svc_name}
+# redis:
+#   persistence: 
+#     size: 10Gi
+#     storageClassName: ${svc_name}
 logs:
   persistence:
     enabled: true

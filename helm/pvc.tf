@@ -1,8 +1,8 @@
-resource "kubernetes_persistent_volume_claim_v1" "pvc" {
-  depends_on = [kubernetes_persistent_volume_v1.pv]
+resource "kubernetes_persistent_volume_claim" "pvc" {
+  depends_on = [kubernetes_persistent_volume.pv]
   metadata {
     name      = var.pvc_name
-    namespace = kubernetes_namespace_v1.namespace.metadata[0].name
+    namespace = kubernetes_namespace.namespace.metadata[0].name
   }
   spec {
     access_modes = ["ReadWriteOnce"]
@@ -27,9 +27,8 @@ resource "kubernetes_persistent_volume_v1" "pv" {
     access_modes       = ["ReadWriteOnce"]
     storage_class_name = var.storage_class_name
     persistent_volume_source {
-      csi {
-        driver        = "ebs.csi.aws.com"
-        volume_handle = var.ebs_volume
+      aws_elastic_block_store {
+        volume_id = var.ebs_volume
       }
     }
   }
