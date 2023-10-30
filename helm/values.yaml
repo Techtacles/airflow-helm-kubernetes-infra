@@ -50,6 +50,7 @@ workers:
     enabled: false
   extraVolumeMounts:
     - name: airflow-pv
+      mountPath: /workers/
 
 
 triggerer:
@@ -61,6 +62,7 @@ triggerer:
     enabled: false   
   extraVolumeMounts:
     - name: airflow-pv
+      mountPath: /triggerer/
 
 # logs:
 #   persistence:
