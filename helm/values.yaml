@@ -48,6 +48,8 @@ workers:
     storageClassName: ${svc_name}
   waitForMigrations:
     enabled: false
+  extraVolumes:
+    - name: airflow-pv
   extraVolumeMounts:
     - name: airflow-pv
       mountPath: /workers/
@@ -60,6 +62,8 @@ triggerer:
     storageClassName: ${svc_name}
   waitForMigrations:
     enabled: false   
+  extraVolumes:
+    - name: airflow-pv
   extraVolumeMounts:
     - name: airflow-pv
       mountPath: /triggerer/
