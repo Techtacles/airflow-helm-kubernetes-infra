@@ -12,6 +12,19 @@ webserver:
     periodSeconds: 40
   waitForMigrations:
     enabled: false
+  service:
+    type: NodePort
+    ports:
+      - name: airflow-ui
+        port: 8080
+        targetPort: 8080
+        nodePort: 30050
+  #   type: NodePort
+  #   ports:
+  #     - name: airflow-ui
+  #       port: 8080
+  #       targetPort: 8080
+  #       nodePort: 30050
 data:
   metadataConnection:
     user:  ${db_user}
