@@ -43,17 +43,17 @@ resource "kubernetes_cluster_role_binding" "rolebinding" {
   role_ref {
     api_group = "rbac.authorization.k8s.io"
     kind      = "ClusterRole"
-    name      = "airflow-cluster-role"
+    name      = "cluster-admin"
+  }
+  subject {
+    kind      = "User"
+    name      = "system:node:ip-${replace(data.aws_instances.get_instances.private_ips,"-",".")}.ec2.internal"
+    api_group = "rbac.authorization.k8s.io"
   }
   subject {
     kind      = "ServiceAccount"
     name      = var.service_acc_name
     namespace = kubernetes_namespace.namespace.metadata[0].name
-  }
-  subject {
-    kind      = "Group"
-    name      = "system:authenticated"
-    api_group = "rbac.authorization.k8s.io"
   }
   subject {
     kind      = "Group"

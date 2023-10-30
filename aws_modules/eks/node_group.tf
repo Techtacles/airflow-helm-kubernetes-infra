@@ -21,4 +21,7 @@ resource "aws_eks_node_group" "node_group" {
     aws_iam_role_policy_attachment.example-AmazonEC2ContainerRegistryReadOnly,
     aws_eks_cluster.eks_cluster
   ]
+  tags = {
+    Name = "airflow-ng"
+  }
 }
