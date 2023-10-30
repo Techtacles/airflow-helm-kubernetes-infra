@@ -18,13 +18,6 @@ resource "helm_release" "airflow_chart" {
 
   values = [
     templatefile("helm/values.yaml", {
-      #airflow_username  = "airflow"
-      #airflow_password  = var.db_password
-      #airflow_role      = "Admin"
-      #airflow_email     = var.airflow_email
-      #airflow_firstname = "Emmanuel"
-      #airflow_lastname  = "Offisong"
-      #pvc_name          = var.pvc_name
       svc_name          = var.storage_class_name
 
     })
