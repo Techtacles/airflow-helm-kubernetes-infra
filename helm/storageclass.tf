@@ -8,5 +8,6 @@ resource "kubernetes_storage_class" "storage_class" {
   volume_binding_mode    = "Immediate"
   parameters = {
     type = "gp2"
+    fsType = "ext4"
   }
 }
