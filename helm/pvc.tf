@@ -1,7 +1,7 @@
 resource "kubernetes_persistent_volume_claim" "pvc" {
   depends_on = [kubernetes_persistent_volume.pv]
   metadata {
-    name      = "${var.pvc_name}-4"
+    name      = var.pvc_name
     namespace = kubernetes_namespace.namespace.metadata[0].name
   }
   spec {
@@ -19,7 +19,7 @@ resource "kubernetes_persistent_volume_claim" "pvc" {
 resource "kubernetes_persistent_volume" "pv" {
   depends_on = [ module.aws_ebs_csi_driver_resources ]
   metadata {
-    name = "airflow-pv-6"
+    name = "airflow-pv"
   }
   spec {
     capacity = {
