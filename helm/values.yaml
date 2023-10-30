@@ -12,13 +12,13 @@ webserver:
     periodSeconds: 40
   waitForMigrations:
     enabled: false
-  service:
-    type: NodePort
-    ports:
-      - name: airflow-ui
-        port: 8080
-        targetPort: 8080
-        nodePort: 30050
+  # service:
+  #   type: NodePort
+  #   ports:
+  #     - name: airflow-ui
+  #       port: 8080
+  #       targetPort: 8080
+  #       nodePort: 30050
   #   type: NodePort
   #   ports:
   #     - name: airflow-ui
@@ -77,4 +77,4 @@ pgbouncer:
   enabled: true
 
 postgresql:
-  enabled: false
+  enabled: true
