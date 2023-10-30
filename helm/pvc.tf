@@ -16,22 +16,22 @@ resource "kubernetes_persistent_volume_claim" "pvc" {
   }
 }
 
-resource "kubernetes_persistent_volume" "pv" {
-  depends_on = [ module.aws_ebs_csi_driver_resources ]
-  metadata {
-    name = "airflow-pv"
-  }
-  spec {
-    capacity = {
-      storage = "10Gi"
-    }
-    access_modes       = ["ReadWriteOnce"]
-    storage_class_name = var.storage_class_name
-    persistent_volume_source {
-      csi {
-        driver        = "ebs.csi.aws.com"
-        volume_handle = var.ebs_volume
-      }
-    }
-  }
-}
+# resource "kubernetes_persistent_volume" "pv" {
+#   depends_on = [ module.aws_ebs_csi_driver_resources ]
+#   metadata {
+#     name = "airflow-pv"
+#   }
+#   spec {
+#     capacity = {
+#       storage = "10Gi"
+#     }
+#     access_modes       = ["ReadWriteOnce"]
+#     storage_class_name = var.storage_class_name
+#     persistent_volume_source {
+#       csi {
+#         driver        = "ebs.csi.aws.com"
+#         volume_handle = var.ebs_volume
+#       }
+#     }
+#   }
+# }
