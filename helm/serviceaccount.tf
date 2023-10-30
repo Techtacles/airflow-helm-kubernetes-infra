@@ -46,18 +46,18 @@ resource "kubernetes_cluster_role_binding" "rolebinding" {
     name      = "cluster-admin"
   }
   subject {
-    kind      = "User"
-    name      = "*"
-    api_group = "rbac.authorization.k8s.io"
-  }
-  subject {
     kind      = "ServiceAccount"
     name      = var.service_acc_name
     namespace = kubernetes_namespace.namespace.metadata[0].name
   }
   subject {
     kind      = "Group"
-    name      = "system:node"
+    name      = "system:authenticated"
+    api_group = "rbac.authorization.k8s.io"
+  }
+  subject {
+    kind      = "Group"
+    name      = "system:unauthenticated"
     api_group = "rbac.authorization.k8s.io"
   }
 }
