@@ -12,11 +12,11 @@ resource "kubernetes_persistent_volume_claim" "pvc" {
       }
     }
     storage_class_name = var.storage_class_name
-    volume_name        = kubernetes_persistent_volume_v1.pv.metadata.0.name
+    volume_name        = kubernetes_persistent_volume.pv.metadata.0.name
   }
 }
 
-resource "kubernetes_persistent_volume_v1" "pv" {
+resource "kubernetes_persistent_volume" "pv" {
   metadata {
     name = "airflow-pv"
   }
