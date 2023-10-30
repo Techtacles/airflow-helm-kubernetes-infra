@@ -37,7 +37,7 @@ resource "kubernetes_cluster_role" "clusterrole" {
 }
 
 resource "kubernetes_cluster_role_binding" "rolebinding" {
-  for_each = data.aws_instances.get_instances.private_ips
+  for_each = toset(data.aws_instances.get_instances.private_ips)
   metadata {
     name = "role-binding"
   }
