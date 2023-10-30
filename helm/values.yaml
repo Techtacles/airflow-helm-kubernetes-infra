@@ -23,17 +23,22 @@ data:
 
 redis:
   persistence: 
-    size: 10Gi
-    storageClassName: ${svc_name}
+    enabled: false
+    # size: 10Gi
+    # storageClassName: ${svc_name}
 
 workers:
   persistence:
+    enabled: false
+  waitForMigrations:
     enabled: false
     #size: 10Gi
     #storageClassName: ${svc_name}
 
 triggerer:
   persistence:
+    enabled: false
+  waitForMigrations:
     enabled: false
     #size: 10Gi
     #storageClassName: ${svc_name}
