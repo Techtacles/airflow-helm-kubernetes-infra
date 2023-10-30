@@ -36,25 +36,32 @@ data:
 
 redis:
   persistence: 
-    enabled: false
-    # size: 10Gi
-    # storageClassName: ${svc_name}
+    enabled: true
+    size: 10Gi
+    storageClassName: ${svc_name}
+  extraVolumeMounts:
+    - name: airflow-pv
 
 workers:
   persistence:
     enabled: false
   waitForMigrations:
-    enabled: false
-    #size: 10Gi
-    #storageClassName: ${svc_name}
+    enabled: true
+    size: 10Gi
+    storageClassName: ${svc_name}
+  extraVolumeMounts:
+    - name: airflow-pv
+
 
 triggerer:
   persistence:
     enabled: false
   waitForMigrations:
-    enabled: false
-    #size: 10Gi
-    #storageClassName: ${svc_name}
+    enabled: true
+    size: 10Gi
+    storageClassName: ${svc_name}
+  extraVolumeMounts:
+    - name: airflow-pv
 
 # logs:
 #   persistence:
