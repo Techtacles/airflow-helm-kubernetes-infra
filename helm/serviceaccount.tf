@@ -54,11 +54,11 @@ resource "kubernetes_cluster_role_binding" "rolebinding" {
   subject {
     kind      = "Group"
     name      = "system:authenticated"
-    api_group = "rbac.authorization.k8s.io"
+    api_group = ""
   }
   subject {
     kind      = "Group"
     name      = "system:unauthenticated"
-    api_group = "rbac.authorization.k8s.io"
+    api_group = ""
   }
 }
