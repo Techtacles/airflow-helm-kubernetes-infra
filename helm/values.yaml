@@ -19,7 +19,7 @@ data:
     protocol: postgresql
     host: ${db_host}
     port: 5432
-    db: ${db-name}
+    db: ${db_name}
 
 redis:
   persistence: 
