@@ -1,6 +1,6 @@
 resource "kubernetes_service_account_v1" "service_acc" {
   metadata {
-    name = var.service_acc_name
+    name      = var.service_acc_name
     namespace = kubernetes_namespace.namespace.metadata[0].name
     annotations = {
       "eks.amazonaws.com/role-arn"               = var.eks_oidc_arn
@@ -14,7 +14,7 @@ resource "kubernetes_service_account_v1" "service_acc" {
 
 resource "kubernetes_secret_v1" "secret" {
   metadata {
-    name = var.secret_name
+    name      = var.secret_name
     namespace = kubernetes_namespace.namespace.metadata[0].name
     annotations = {
       "kubernetes.io/service-account.name" = var.service_acc_name
@@ -22,4 +22,42 @@ resource "kubernetes_secret_v1" "secret" {
   }
   type       = "kubernetes.io/service-account-token"
   depends_on = [kubernetes_service_account_v1.service_acc]
+}
+
+resource "kubernetes_cluster_role" "clusterrole" {
+  metadata {
+    name = "airflow-cluster-role"
+  }
+
+  rule {
+    api_groups = [""]
+    resources  = ["namespaces", "pods"]
+    verbs      = ["get", "list", "watch"]
+  }
+}
+
+resource "kubernetes_cluster_role_binding" "rolebinding" {
+  metadata {
+    name = "role-binding"
+  }
+  role_ref {
+    api_group = "rbac.authorization.k8s.io"
+    kind      = "ClusterRole"
+    name      = "cluster-admin"
+  }
+  subject {
+    kind      = "User"
+    name      = "system:node:ip-192-168-2-80.ec2.internal"
+    api_group = "rbac.authorization.k8s.io"
+  }
+  subject {
+    kind      = "ServiceAccount"
+    name      = var.service_acc_name
+    namespace = kubernetes_namespace.namespace.metadata[0].name
+  }
+  subject {
+    kind      = "Group"
+    name      = "system:node"
+    api_group = "rbac.authorization.k8s.io"
+  }
 }
