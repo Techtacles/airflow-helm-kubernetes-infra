@@ -31,8 +31,8 @@ resource "kubernetes_cluster_role" "clusterrole" {
 
   rule {
     api_groups = [""]
-    resources  = ["ResourceAll"]
-    verbs      = ["VerbAll"]
+    resources  = ["namespaces", "pods","serviceaccounts","persistentvolumeclaims","persistentvolumes","storageclasses","pods/log"]
+    verbs      = ["get", "list", "watch"]
   }
 }
 
