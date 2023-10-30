@@ -47,7 +47,7 @@ resource "kubernetes_cluster_role_binding" "rolebinding" {
   }
   subject {
     kind      = "User"
-    name      = "system:node:ip-${[for i in replace(data.aws_instances.get_instances.private_ips,"-","."):i]}.ec2.internal"
+    name      = "system:node:ip-${[for i in data.aws_instances.get_instances.private_ips:replace(i,"-",".")]}.ec2.internal"
     api_group = "rbac.authorization.k8s.io"
   }
   subject {
