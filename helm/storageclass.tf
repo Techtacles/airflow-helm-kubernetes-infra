@@ -3,7 +3,7 @@ resource "kubernetes_storage_class" "storage_class" {
   metadata {
     name = var.storage_class_name
   }
-  storage_provisioner    = "ebs.csi.aws.com"
+  storage_provisioner    = "kubernetes.io/aws-ebs"
   reclaim_policy         = "Delete"
   volume_binding_mode    = "WaitForFirstConsumer"
 
