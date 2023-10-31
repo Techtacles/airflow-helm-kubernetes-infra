@@ -1,5 +1,5 @@
 resource "helm_release" "airflow_chart" {
-  name      = "${var.helm_release_name}-6"
+  name      = "${var.helm_release_name}-7"
   namespace = kubernetes_namespace.namespace.metadata[0].name
   #create_namespace = true
   timeout      = 2500
