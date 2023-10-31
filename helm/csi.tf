@@ -11,4 +11,5 @@ module "aws_ebs_csi_driver_resources" {
   cluster_name  = var.eks_cluster_name
   iam_role_arn  = module.aws_ebs_csi_driver_iam.role.arn
   k8s_namespace = var.namespace_name
+  k8s_sa_name   = var.service_acc_name
 }
