@@ -48,6 +48,11 @@ workers:
     storageClassName: ${svc_name}
   waitForMigrations:
     enabled: false
+  extraVolumes:
+    - name: worker-volume
+  extraVolumeMounts:
+    - name: worker-volume
+      mountPath: /var/workers
 
 
 
@@ -57,7 +62,12 @@ triggerer:
     size: 10Gi
     storageClassName: ${svc_name}
   waitForMigrations:
-    enabled: false   
+    enabled: false 
+  extraVolumes:
+    - name: triggerer-volume
+  extraVolumeMounts:
+    - name: triggerer-volume
+      mountPath: /var/triggerer  
 
 
 # logs:
