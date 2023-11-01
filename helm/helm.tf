@@ -1,6 +1,7 @@
 resource "helm_release" "airflow_chart" {
-  name      = "${var.helm_release_name}-1"
-  namespace = kubernetes_namespace.namespace.metadata[0].name
+  name       = "${var.helm_release_name}-1"
+  namespace  = kubernetes_namespace.namespace.metadata[0].name
+  depends_on = [helm_release.ebs_csi_driver]
   #create_namespace = true
   timeout      = 2500
   force_update = true
@@ -30,6 +31,23 @@ resource "helm_release" "airflow_chart" {
       db_name     = var.db_name
       pvc_name    = var.pvc_name
       svc_name    = var.storage_class_name
+
+    })
+  ]
+}
+
+resource "helm_release" "ebs_csi_driver" {
+  name      = "csi-driver"
+  namespace = kubernetes_namespace.namespace.metadata[0].name
+  #create_namespace = true
+  timeout      = 2500
+  force_update = true
+
+  repository = "https://charts.deliveryhero.io/"
+  chart      = "aws-ebs-csi-driver"
+  values = [
+    templatefile("helm/ebs_csi_values.yaml", {
+      svc_name = var.storage_class_name
 
     })
   ]

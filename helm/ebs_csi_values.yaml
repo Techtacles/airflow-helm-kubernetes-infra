@@ -1,0 +1,3 @@
+storageClasses:
+  - name: ${svc_name}
+  
