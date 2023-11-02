@@ -1,18 +1,18 @@
 #TO change
-# resource "kubernetes_service" "svc" {
-#   metadata {
-#     name      = var.svc_name
-#     namespace = kubernetes_namespace.namespace.metadata[0].name
-#   }
-#   spec {
-#     port {
-#       port        = 8080
-#       target_port = 8080
-#       node_port   = 31151
-#     }
-#     type = "NodePort"
-#   }
-# }
+resource "kubernetes_service" "svc" {
+  metadata {
+    name      = var.svc_name
+    namespace = kubernetes_namespace.namespace.metadata[0].name
+  }
+  spec {
+    port {
+      port        = 8080
+      target_port = 8080
+      node_port   = 31151
+    }
+    type = "NodePort"
+  }
+}
 
 
 # #DB
