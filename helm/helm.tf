@@ -4,7 +4,7 @@ resource "helm_release" "airflow_chart" {
   depends_on = [helm_release.ebs_csi_driver]
   #create_namespace = true
   timeout      = 2500
-  force_update = true
+  wait         = false
 
   repository = var.helm_repo
   chart      = var.helm_chart

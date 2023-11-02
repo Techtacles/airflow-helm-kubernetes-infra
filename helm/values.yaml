@@ -1,24 +1,18 @@
+webserverSecretKey: bf4d4e933b3bde8208810cbbf9188269
+
+createUserJob:
+  useHelmHooks: false
+  applyCustomEnv: false
+migrateDatabaseJob:
+  useHelmHooks: false
+  applyCustomEnv: false
+
 webserver:
-  readinessProbe:
-    initialDelaySeconds: 500
-    periodSeconds: 40
-
-  livenessProbe:
-    initialDelaySeconds: 500
-    periodSeconds: 40
-
-  startupProbe:
-    timeoutSeconds: 200
-    periodSeconds: 40
   waitForMigrations:
     enabled: true
-  # service:
-  #   type: NodePort
-  #   ports:
-  #     - name: airflow-ui
-  #       port: 8080
-  #       targetPort: 8080
-  #       nodePort: 31050
+  service:
+    type: LoadBalancer
+  
 data:
   metadataConnection:
     user:  ${db_user}
@@ -69,7 +63,7 @@ scheduler:
     enabled: true
 
 pgbouncer:
-  enabled: false
+  enabled: true
 
 postgresql:
   enabled: false
