@@ -1,15 +1,14 @@
-resource "aws_autoscaling_group_tag" "nodes_group" {
-  for_each = toset(
-    [for asg in flatten(
-      [for resources in aws_eks_node_group.node_group.resources : resources.autoscaling_groups]
-    ) : asg.name]
-  )
-
-  autoscaling_group_name = each.value
+resource "aws_autoscaling_group_tag" "asg" {    
+  autoscaling_group_name = aws_eks_node_group.node_group.resources[0].autoscaling_groups[0].name
 
   tag {
     key   = "Name"
-    value = "EKS_MANAGED-NODE"
+    value = "EKS-MANAGED-GROUP"
+
     propagate_at_launch = true
   }
+
+  depends_on = [
+    aws_eks_node_group.node_group
+  ]
 }
