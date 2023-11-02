@@ -15,6 +15,6 @@ default_args = {
 with DAG(dag_id='dag_pipeline', schedule_interval="@daily", default_args=default_args) as dag:
     start_task = DummyOperator(task_id='start_task')
     task_1 = DummyOperator(task_id='task_1', dag=dag)
-    echo_something=BashOperator(bash_command="echo proceeding to the final task")
+    echo_something=BashOperator(task_id='executing_bash',bash_command="echo proceeding to the final task")
     end_task = DummyOperator(task_id='end_task')
     start_task >> task_1 >> echo_something >> end_task
