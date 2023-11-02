@@ -70,7 +70,10 @@ pgbouncer:
 postgresql:
   enabled: false
 
-config:
-  core:
-    dags_folder: dags
-    load_examples: 'True'
+dags:
+  gitSync:
+    enabled: true
+    repo: https://github.com/Techtacles/airflow-helm-kubernetes-infra.git
+    branch: master
+    rev: HEAD
+    subPath: "dags"
