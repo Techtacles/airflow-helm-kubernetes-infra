@@ -13,7 +13,7 @@ webserver:
   service:
     type: LoadBalancer
   defaultUser:
-    enabled: false
+    enabled: true
     username: ${airflow_username}
     password: ${airflow_password}
     role: ${airflow_role}
