@@ -18,7 +18,7 @@ webserver:
       - name: airflow-ui
         port: 8080
         targetPort: 8080
-        nodePort: 30050
+        nodePort: 31050
 data:
   metadataConnection:
     user:  ${db_user}
