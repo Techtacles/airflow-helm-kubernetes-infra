@@ -33,6 +33,7 @@ module "rds" {
   db_subnet_group_name = var.db_subnet_group_name
   subnet_ids           = toset(flatten([module.rds_vpc.0.public_subnet_ids[*]]))
   vpc_id               = module.rds_vpc.0.vpc_id
+  eks_cidr             = flatten([module.eks_vpc.0.private_subnet_cidrblocks,module.eks_vpc.0.public_subnet_cidrblocks])
 }
 
 module "eks" {
