@@ -1,9 +1,10 @@
 resource "helm_release" "airflow_chart" {
-  name       = var.helm_release_name
-  namespace  = kubernetes_namespace.namespace.metadata[0].name
-  depends_on = [helm_release.ebs_csi_driver]
-  timeout    = 2500
-  wait       = false
+  name         = "${var.helm_release_name}-1"
+  namespace    = kubernetes_namespace.namespace.metadata[0].name
+  depends_on   = [helm_release.ebs_csi_driver]
+  timeout      = 2500
+  wait         = false
+  force_update = true
 
   repository = var.helm_repo
   chart      = var.helm_chart
