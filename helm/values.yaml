@@ -70,12 +70,6 @@ triggerer:
       mountPath: /var/triggerer  
 
 
-# logs:
-#   persistence:
-#     enabled: true
-#     storageClassName: ${svc_name}
-#     existingClaim: ${pvc_name}
-
 scheduler:
   waitForMigrations:
     enabled: false
