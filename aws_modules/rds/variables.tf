@@ -36,4 +36,4 @@ variable "vpc_id" {
   type = string
 
 }
-variable "eks_cidr" {}
+variable "node_group_cidr" {}

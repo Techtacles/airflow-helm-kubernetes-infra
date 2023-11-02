@@ -38,3 +38,6 @@ variable "oidc_policy_name" {
   type = string
 
 }
+variable "vpc_sg_id" {
+  
+}

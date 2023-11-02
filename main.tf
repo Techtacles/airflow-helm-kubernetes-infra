@@ -33,7 +33,7 @@ module "rds" {
   db_subnet_group_name = var.db_subnet_group_name
   subnet_ids           = toset(flatten([module.rds_vpc.0.public_subnet_ids[*]]))
   vpc_id               = module.rds_vpc.0.vpc_id
-  eks_cidr             = flatten([module.eks_vpc.0.private_subnet_cidrblocks, module.eks_vpc.0.public_subnet_cidrblocks])
+  node_group_cidr      = flatten([data.aws_instances.worker_nodes.public_ips])
 }
 
 module "eks" {
@@ -50,6 +50,7 @@ module "eks" {
   namespace_name        = var.namespace_name
   service_acc_name      = var.service_acc_name
   oidc_policy_name      = var.oidc_policy_name
+  vpc_sg_id             = [module.eks_vpc.0.sg_id]
 
 }
 # resource "null_resource" "update_config" {

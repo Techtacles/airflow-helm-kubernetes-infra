@@ -38,3 +38,7 @@ output "route_table_id" {
   value = aws_vpc.vpc.main_route_table_id
 
 }
+output "sg_id" {
+  value = aws_security_group.allow_tls.id
+
+}
