@@ -11,7 +11,7 @@ webserver:
     timeoutSeconds: 200
     periodSeconds: 40
   waitForMigrations:
-    enabled: false
+    enabled: true
   service:
     type: NodePort
     ports:
@@ -41,7 +41,7 @@ workers:
     size: 10Gi
     storageClassName: ${svc_name}
   waitForMigrations:
-    enabled: false
+    enabled: true
   extraVolumes:
     - name: worker-volume
   extraVolumeMounts:
@@ -56,7 +56,7 @@ triggerer:
     size: 10Gi
     storageClassName: ${svc_name}
   waitForMigrations:
-    enabled: false 
+    enabled: true 
   extraVolumes:
     - name: triggerer-volume
   extraVolumeMounts:
@@ -66,7 +66,7 @@ triggerer:
 
 scheduler:
   waitForMigrations:
-    enabled: false
+    enabled: true
 
 pgbouncer:
   enabled: true
