@@ -1,15 +1,15 @@
 webserver:
   readinessProbe:
-    initialDelaySeconds: 500
+    initialDelaySeconds: 600
     periodSeconds: 40
 
   livenessProbe:
-    initialDelaySeconds: 500
+    initialDelaySeconds: 600
     periodSeconds: 40
 
   startupProbe:
-    timeoutSeconds: 200
-    periodSeconds: 40
+    timeoutSeconds: 600
+    periodSeconds: 50
   waitForMigrations:
     enabled: true
   # service:
