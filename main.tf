@@ -31,7 +31,8 @@ module "rds" {
   rds_username         = var.rds_username
   rds_password         = var.rds_password
   db_subnet_group_name = var.db_subnet_group_name
-  subnet_ids           = toset(flatten([module.rds_vpc.0.private_subnet_ids[*],module.rds_vpc.0.public_subnet_ids[*]]))
+  subnet_ids           = toset(flatten([module.rds_vpc.0.private_subnet_ids[*], module.rds_vpc.0.public_subnet_ids[*]]))
+  vpc_id               = module.rds_vpc.0.id
 }
 
 module "eks" {
