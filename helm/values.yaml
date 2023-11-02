@@ -1,15 +1,15 @@
 webserver:
   readinessProbe:
-    initialDelaySeconds: 600
+    initialDelaySeconds: 500
     periodSeconds: 40
 
   livenessProbe:
-    initialDelaySeconds: 600
+    initialDelaySeconds: 500
     periodSeconds: 40
 
   startupProbe:
-    timeoutSeconds: 600
-    periodSeconds: 50
+    timeoutSeconds: 200
+    periodSeconds: 40
   waitForMigrations:
     enabled: true
   # service:
@@ -69,7 +69,7 @@ scheduler:
     enabled: true
 
 pgbouncer:
-  enabled: true
+  enabled: false
 
 postgresql:
   enabled: false
