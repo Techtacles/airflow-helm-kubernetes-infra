@@ -7,8 +7,9 @@ data "aws_eks_cluster" "cluster" {
   depends_on = [module.eks]
 }
 data "aws_instances" "worker_nodes" {
-  instance_tags = {
-    Name = "EKS-MANAGED-NODE"
+  filter {
+    name   = "image-id"
+    values = ["ami-0c97930d0d19e564a"]
   }
   instance_state_names = ["running"]
 }
