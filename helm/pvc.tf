@@ -1,18 +1,18 @@
-resource "kubernetes_persistent_volume_claim" "pvc" {
-  metadata {
-    name      = var.pvc_name
-    namespace = kubernetes_namespace.namespace.metadata[0].name
-  }
-  spec {
-    access_modes = ["ReadWriteOnce"]
-    resources {
-      requests = {
-        storage = "10Gi"
-      }
-    }
-    storage_class_name = var.storage_class_name
-  }
-}
+# resource "kubernetes_persistent_volume_claim" "pvc" {
+#   metadata {
+#     name      = var.pvc_name
+#     namespace = kubernetes_namespace.namespace.metadata[0].name
+#   }
+#   spec {
+#     access_modes = ["ReadWriteOnce"]
+#     resources {
+#       requests = {
+#         storage = "10Gi"
+#       }
+#     }
+#     storage_class_name = var.storage_class_name
+#   }
+# }
 
 # resource "kubernetes_persistent_volume" "pv" {
 #   depends_on = [ module.aws_ebs_csi_driver_resources ]

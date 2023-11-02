@@ -31,7 +31,7 @@ module "rds" {
   rds_username         = var.rds_username
   rds_password         = var.rds_password
   db_subnet_group_name = var.db_subnet_group_name
-  subnet_ids           = module.rds_vpc.0.private_subnet_ids[*]
+  subnet_ids           = toset(flatten([module.rds_vpc.0.private_subnet_ids[*],module.rds_vpc.0.public_subnet_ids[*]]))
 }
 
 module "eks" {
@@ -75,8 +75,8 @@ module "airflow_helm_chart" {
   db_host            = module.rds.0.db_address
   db_port            = module.rds.0.db_port
   db_name            = module.rds.0.db_name
-  db_user            = module.rds.0.db_user
-  db_password        = module.rds.0.db_pass
+  db_user            = var.rds_username
+  db_password        = var.rds_password
   service_acc_name   = var.service_acc_name
   eks_oidc_arn       = module.eks.0.eks_oicd_arn
   secret_name        = var.secret_name

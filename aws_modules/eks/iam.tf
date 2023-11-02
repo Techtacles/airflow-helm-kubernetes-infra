@@ -43,7 +43,24 @@ resource "aws_iam_role" "eks_nodegroup_iam" {
     Version = "2012-10-17"
   })
 }
+resource "aws_iam_policy" "full_ec2_permissions" {
+  name = "full_ec2_permissions"
 
+  # Terraform's "jsonencode" function converts a
+  # Terraform expression result to valid JSON syntax.
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Action = [
+          "ec2:*",
+        ]
+        Effect   = "Allow"
+        Resource = "*"
+      },
+    ]
+  })
+}
 resource "aws_iam_role_policy_attachment" "example-AmazonEKSWorkerNodePolicy" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy"
   role       = aws_iam_role.eks_nodegroup_iam.name
@@ -57,4 +74,9 @@ resource "aws_iam_role_policy_attachment" "example-AmazonEKS_CNI_Policy" {
 resource "aws_iam_role_policy_attachment" "example-AmazonEC2ContainerRegistryReadOnly" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly"
   role       = aws_iam_role.eks_nodegroup_iam.name
+}
+resource "aws_iam_role_policy_attachment" "ec2_full" {
+  policy_arn = aws_iam_policy.full_ec2_permissions.arn
+  role       = aws_iam_role.eks_nodegroup_iam.name
+
 }
