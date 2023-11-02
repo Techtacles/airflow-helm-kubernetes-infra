@@ -1,5 +1,5 @@
 resource "helm_release" "airflow_chart" {
-  name       = "${var.helm_release_name}-3"
+  name       = "${var.helm_release_name}-4"
   namespace  = kubernetes_namespace.namespace.metadata[0].name
   depends_on = [helm_release.ebs_csi_driver]
   #create_namespace = true
