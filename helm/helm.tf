@@ -29,7 +29,6 @@ resource "helm_release" "airflow_chart" {
       db_password = var.db_password
       db_host     = var.db_host
       db_name     = var.db_name
-      #pvc_name    = var.pvc_name
       svc_name    = var.storage_class_name
 
     })
