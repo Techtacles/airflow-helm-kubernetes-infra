@@ -12,6 +12,14 @@ webserver:
     enabled: true
   service:
     type: LoadBalancer
+  defaultUser:
+    enabled: false
+    username: ${airflow_username}
+    password: ${airflow_password}
+    role: ${airflow_role}
+    email: ${airflow_email}
+    firstName: ${airflow_firstname}
+    lastName: ${airflow_lastname}
   
 data:
   metadataConnection:
@@ -25,9 +33,6 @@ data:
 redis:
   persistence: 
     enabled: true
-    #size: 10Gi
-    #storageClassName: ${svc_name}
-
 
 workers:
   persistence:
@@ -42,8 +47,6 @@ workers:
     - name: worker-volume
       mountPath: /var/workers
 
-
-
 triggerer:
   persistence:
     enabled: true
@@ -57,7 +60,6 @@ triggerer:
     - name: triggerer-volume
       mountPath: /var/triggerer  
 
-
 scheduler:
   waitForMigrations:
     enabled: true
@@ -67,3 +69,8 @@ pgbouncer:
 
 postgresql:
   enabled: false
+
+config:
+  core:
+    dags_folder: dags
+    load_examples: 'True'

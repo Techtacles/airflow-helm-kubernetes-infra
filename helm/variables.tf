@@ -14,14 +14,7 @@ variable "helm_repo" {
 variable "helm_chart" {
   type = string
 }
-/* variable "chart_params" {
-  type = list(object({
-    name  = string
-    value = string
-    type  = string
-  }))
 
-} */
 variable "db_host" {
   type = string
 
