@@ -8,7 +8,7 @@ resource "aws_db_instance" "db_instance" {
   db_subnet_group_name   = aws_db_subnet_group.db_subnet_group.name
   skip_final_snapshot    = true
   publicly_accessible    = true
-  identifier             = "airflow_db"
+  identifier             = "airflow-db"
   vpc_security_group_ids = [aws_security_group.allow_rds_conn.id]
   depends_on             = [aws_security_group.allow_rds_conn]
 }
