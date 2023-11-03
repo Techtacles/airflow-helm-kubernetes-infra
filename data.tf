@@ -8,7 +8,7 @@ data "aws_eks_cluster" "cluster" {
 }
 data "aws_instances" "worker_nodes" {
   filter {
-    name   = "image-id"
+    name = "image-id"
     #The ami shown below is what eks creates for the node group instances
     values = ["ami-0c97930d0d19e564a"]
   }
