@@ -53,24 +53,11 @@ module "eks" {
   vpc_sg_id             = [module.eks_vpc.0.sg_id]
 
 }
-# resource "null_resource" "update_config" {
-#   depends_on = [module.eks]
-#   triggers = {
-#     always = timestamp()
-#   }
-#   provisioner "local-exec" {
-#     command = <<EOT
-#       aws eks update-kubeconfig --region us-east-1 --name ${var.eks_cluster_name}
-#       cat /home/runner/.kube/config >> config.yaml
-#       ls -al
-#       pwd
-#     EOT
-#   }
-# }
 
 module "airflow_helm_chart" {
   count              = var.enable_workflow == true ? 1 : 0
   source             = "./helm"
+  depends_on         = [module.eks]
   namespace_name     = var.namespace_name
   helm_release_name  = var.helm_release_name
   helm_repo          = var.helm_repo
